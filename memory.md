@@ -1,0 +1,1 @@
+Iteración actual: se generaron main.py, index.html, style.css
