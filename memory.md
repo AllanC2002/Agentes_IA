@@ -1,1 +1,1 @@
-Iteración actual: se generaron main.py, index.html, style.css
+Se ha creado un servidor web con FastAPI que sirve un archivo index.html con un estilo definido en style.css. El archivo index.html contiene una imagen de un perro y un script que hace una solicitud a /api/data. El estilo se ha definido en style.css con un fondo de color #1a1a2e y texto de color #ffffff.

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI App Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <main>
+        <header>
+            <div class="badge">CrewAI · Groq · FastAPI</div>
+            <h1>AI App<br><span>Generator</span></h1>
+            <p class="subtitle">Describe tu app y la IA la construye por ti</p>
+        </header>
+
+        <section class="input-section">
+            <textarea id="descripcion" placeholder="Ej: una app de lista de tareas con opción de marcar como completado..." rows="4"></textarea>
+            <button id="btn-generar" onclick="generar()">
+                <span class="btn-text">Generar App</span>
+                <span class="btn-icon">→</span>
+            </button>
+        </section>
+
+        <section class="progress-section" id="progress-section" style="display:none">
+            <div class="progress-header">
+                <div class="spinner" id="spinner"></div>
+                <span id="status-text">Iniciando...</span>
+            </div>
+            <div class="log" id="log"></div>
+        </section>
+
+        <section class="done-section" id="done-section" style="display:none">
+            <div class="done-card">
+                <div class="done-icon">🎉</div>
+                <h2>¡App Generada!</h2>
+                <p>Tu app está lista en la carpeta <code>app_generada/</code></p>
+                <div class="commands">
+                    <p class="cmd-label">Para ejecutarla:</p>
+                    <code class="cmd">cd app_generada && python main.py</code>
+                </div>
+                <button onclick="reset()">Generar otra app</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    const API = 'http://localhost:8000'
+    let source = null
+
+    async function generar() {
+        const descripcion = document.getElementById('descripcion').value.trim()
+        if (!descripcion) return
+
+        document.getElementById('btn-generar').disabled = true
+        document.getElementById('progress-section').style.display = 'block'
+        document.getElementById('done-section').style.display = 'none'
+        document.getElementById('log').innerHTML = ''
+        document.getElementById('spinner').style.display = 'block'
+        document.getElementById('status-text').textContent = 'Conectando...'
+
+        source = new EventSource(`${API}/progreso`)
+
+        source.onmessage = (e) => {
+            const data = JSON.parse(e.data)
+            if (data.tipo === 'ping') return
+            agregarLog(data.mensaje, data.tipo)
+            document.getElementById('status-text').textContent = data.mensaje
+            if (data.tipo === 'finalizado') {
+                source.close()
+                document.getElementById('spinner').style.display = 'none'
+                document.getElementById('done-section').style.display = 'block'
+            }
+            if (data.tipo === 'error') {
+                source.close()
+                document.getElementById('spinner').style.display = 'none'
+            }
+        }
+
+        source.onerror = (e) => {
+            agregarLog('❌ Error de conexión con el servidor', 'error')
+            source.close()
+        }
+
+        await new Promise(r => setTimeout(r, 500))
+
+        try {
+            const res = await fetch(`${API}/generar`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ descripcion })
+            })
+            if (!res.ok) agregarLog('❌ Error al iniciar', 'error')
+        } catch (err) {
+            agregarLog(`❌ ${err.message}`, 'error')
+        }
+    }
+
+    function agregarLog(mensaje, tipo) {
+        const log = document.getElementById('log')
+        const line = document.createElement('div')
+        line.className = `log-line ${tipo}`
+        line.textContent = mensaje
+        log.appendChild(line)
+        log.scrollTop = log.scrollHeight
+    }
+
+    function reset() {
+        if (source) source.close()
+        document.getElementById('descripcion').value = ''
+        document.getElementById('btn-generar').disabled = false
+        document.getElementById('progress-section').style.display = 'none'
+        document.getElementById('done-section').style.display = 'none'
+        document.getElementById('spinner').style.display = 'block'
+        document.getElementById('log').innerHTML = ''
+    }
+</script>
+</body>
+</html>
