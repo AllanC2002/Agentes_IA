@@ -5,3 +5,4 @@ crewai
 crewai[litellm]
 litellm
 langchain-ollama
+crewai[google-genai]

@@ -3,11 +3,20 @@ import litellm
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process, LLM
 from crewai.tools import BaseTool
+import time
 
 load_dotenv()
 
 litellm.num_retries = 5
-litellm.retry_after = 10
+litellm.retry_after = 15
+
+original_completion = litellm.completion
+
+def completion_con_pausa(*args, **kwargs):
+    time.sleep(8)  # 8 segundos entre cada llamada al LLM
+    return original_completion(*args, **kwargs)
+
+litellm.completion = completion_con_pausa
 
 # ─────────────────────────────────────────────
 # HERRAMIENTAS — guardado separado por archivo
@@ -98,6 +107,7 @@ if not os.path.exists("memory.md"):
 # ─────────────────────────────────────────────
 # LLM
 # ─────────────────────────────────────────────
+
 llm = LLM(
     model="groq/llama-3.3-70b-versatile",
     api_key=os.environ.get("GROQ_API_KEY"),
@@ -105,6 +115,17 @@ llm = LLM(
     max_retries=5,
     timeout=60,
 )
+"""
+llm = LLM(
+    model="gemini/gemini-2.0-flash",
+    api_key=os.environ.get("GOOGLE_API_KEY"),
+    temperature=0,
+    max_retries=5,
+    timeout=60,
+)
+"""
+
+
 
 # ─────────────────────────────────────────────
 # AGENTES — uno por archivo para minimizar tokens
