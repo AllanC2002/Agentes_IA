@@ -1,5 +1,5 @@
 # Proyecto
-El usuario quiere: app simple que muestre una imagen de un perro
+El usuario quiere: necesito una app que me muestre que dia es hoy y que aparte tenguna una imagen del sol
 
 Reglas técnicas:
 - Backend: FastAPI en Python

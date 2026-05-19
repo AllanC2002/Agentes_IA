@@ -8,8 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="bg-grid"></div>
-
     <main>
         <header>
             <div class="badge">CrewAI · Groq · FastAPI</div>
@@ -17,106 +15,141 @@
             <p class="subtitle">Describe tu app y la IA la construye por ti</p>
         </header>
 
-        <section class="input-section">
+        <!-- ESTADO 1: Input -->
+        <section id="estado-input">
             <textarea id="descripcion" placeholder="Ej: una app de lista de tareas con opción de marcar como completado..." rows="4"></textarea>
             <button id="btn-generar" onclick="generar()">
-                <span class="btn-text">Generar App</span>
-                <span class="btn-icon">→</span>
+                Generar App <span>→</span>
             </button>
         </section>
 
-        <section class="progress-section" id="progress-section" style="display:none">
-            <div class="progress-header">
-                <div class="spinner" id="spinner"></div>
-                <span id="status-text">Iniciando...</span>
+        <!-- ESTADO 2: Generando -->
+        <section id="estado-generando" style="display:none">
+            <div class="spinner-wrap">
+                <div class="spinner"></div>
+                <span id="status-text">Iniciando agentes...</span>
             </div>
-            <div class="log" id="log"></div>
+            <p class="aviso">⏳ Esto puede tomar varios minutos. Los agentes están trabajando en tu app.</p>
         </section>
 
-        <section class="done-section" id="done-section" style="display:none">
-            <div class="done-card">
-                <div class="done-icon">🎉</div>
-                <h2>¡App Generada!</h2>
-                <p>Tu app está lista en la carpeta <code>app_generada/</code></p>
-                <div class="commands">
-                    <p class="cmd-label">Para ejecutarla:</p>
-                    <code class="cmd">cd app_generada && python main.py</code>
+        <!-- ESTADO 3: Listo -->
+        <section id="estado-listo" style="display:none">
+            <div class="resultado-header">
+                <span class="check">✓</span>
+                <h2>App generada</h2>
+            </div>
+            <div class="cmd-block">
+                <span class="cmd-label">Para ejecutarla:</span>
+                <code>cd app_generada && python main.py</code>
+            </div>
+
+            <div class="feedback-wrap">
+                <p class="feedback-label">¿Qué tal quedó?</p>
+                <div class="feedback-btns">
+                    <button class="btn-secondary btn-ok" onclick="feedback('ok')">👍 Perfecta</button>
+                    <button class="btn-secondary btn-warn" onclick="feedback('mejorar')">⚠️ Mejorar algo</button>
+                    <button class="btn-secondary" onclick="feedback('regenerar')">🔄 Regenerar todo</button>
                 </div>
-                <button onclick="reset()">Generar otra app</button>
+            </div>
+
+            <!-- Solo aparece si elige "Mejorar algo" -->
+            <div id="mejora-wrap" style="display:none">
+                <textarea id="mejora-texto" placeholder="¿Qué específicamente falló o falta? Sé específico..." rows="3"></textarea>
+                <button onclick="enviarMejora()">Aplicar mejora →</button>
             </div>
         </section>
+
     </main>
 
     <script>
-    const API = 'http://localhost:8000'
-    let source = null
+        const API = 'http://localhost:8000'
+        let source = null
+        let descripcionActual = ''
 
-    async function generar() {
-        const descripcion = document.getElementById('descripcion').value.trim()
-        if (!descripcion) return
+        function mostrarEstado(estado) {
+            document.getElementById('estado-input').style.display = estado === 'input' ? 'block' : 'none'
+            document.getElementById('estado-generando').style.display = estado === 'generando' ? 'block' : 'none'
+            document.getElementById('estado-listo').style.display = estado === 'listo' ? 'block' : 'none'
+        }
 
-        document.getElementById('btn-generar').disabled = true
-        document.getElementById('progress-section').style.display = 'block'
-        document.getElementById('done-section').style.display = 'none'
-        document.getElementById('log').innerHTML = ''
-        document.getElementById('spinner').style.display = 'block'
-        document.getElementById('status-text').textContent = 'Conectando...'
+        async function generar() {
+            descripcionActual = document.getElementById('descripcion').value.trim()
+            if (!descripcionActual) return
+            await lanzarCrew(descripcionActual)
+        }
 
-        source = new EventSource(`${API}/progreso`)
+        async function lanzarCrew(descripcion) {
+            mostrarEstado('generando')
+            document.getElementById('status-text').textContent = 'Conectando con los agentes...'
+            document.getElementById('mejora-wrap').style.display = 'none'
 
-        source.onmessage = (e) => {
-            const data = JSON.parse(e.data)
-            if (data.tipo === 'ping') return
-            agregarLog(data.mensaje, data.tipo)
-            document.getElementById('status-text').textContent = data.mensaje
-            if (data.tipo === 'finalizado') {
-                source.close()
-                document.getElementById('spinner').style.display = 'none'
-                document.getElementById('done-section').style.display = 'block'
+            if (source) source.close()
+            source = new EventSource(`${API}/progreso`)
+
+            source.onmessage = (e) => {
+                const data = JSON.parse(e.data)
+                if (data.tipo === 'ping') return
+
+                document.getElementById('status-text').textContent = data.mensaje
+
+                if (data.tipo === 'finalizado') {
+                    source.close()
+                    mostrarEstado('listo')
+                }
+
+                if (data.tipo === 'error') {
+                    source.close()
+                    document.getElementById('status-text').textContent = data.mensaje
+                }
             }
-            if (data.tipo === 'error') {
+
+            source.onerror = () => {
+                document.getElementById('status-text').textContent = '❌ Error de conexión con el servidor'
                 source.close()
-                document.getElementById('spinner').style.display = 'none'
+            }
+
+            await new Promise(r => setTimeout(r, 500))
+
+            try {
+                const res = await fetch(`${API}/generar`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ descripcion })
+                })
+                if (!res.ok) {
+                    document.getElementById('status-text').textContent = '❌ Error al iniciar la generación'
+                }
+            } catch (err) {
+                document.getElementById('status-text').textContent = `❌ No se pudo conectar: ${err.message}`
             }
         }
 
-        source.onerror = (e) => {
-            agregarLog('❌ Error de conexión con el servidor', 'error')
-            source.close()
+        function feedback(tipo) {
+            if (tipo === 'ok') {
+                fetch(`${API}/feedback`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tipo: 'ok', descripcion: descripcionActual })
+                })
+                document.getElementById('descripcion').value = ''
+                mostrarEstado('input')
+
+            } else if (tipo === 'mejorar') {
+                document.getElementById('mejora-wrap').style.display = 'block'
+                document.getElementById('mejora-texto').focus()
+
+            } else if (tipo === 'regenerar') {
+                lanzarCrew(descripcionActual)
+            }
         }
 
-        await new Promise(r => setTimeout(r, 500))
-
-        try {
-            const res = await fetch(`${API}/generar`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ descripcion })
-            })
-            if (!res.ok) agregarLog('❌ Error al iniciar', 'error')
-        } catch (err) {
-            agregarLog(`❌ ${err.message}`, 'error')
+        async function enviarMejora() {
+            const mejora = document.getElementById('mejora-texto').value.trim()
+            if (!mejora) return
+            const descripcionConMejora = `${descripcionActual}. MEJORA SOLICITADA: ${mejora}`
+            descripcionActual = descripcionConMejora
+            await lanzarCrew(descripcionConMejora)
         }
-    }
-
-    function agregarLog(mensaje, tipo) {
-        const log = document.getElementById('log')
-        const line = document.createElement('div')
-        line.className = `log-line ${tipo}`
-        line.textContent = mensaje
-        log.appendChild(line)
-        log.scrollTop = log.scrollHeight
-    }
-
-    function reset() {
-        if (source) source.close()
-        document.getElementById('descripcion').value = ''
-        document.getElementById('btn-generar').disabled = false
-        document.getElementById('progress-section').style.display = 'none'
-        document.getElementById('done-section').style.display = 'none'
-        document.getElementById('spinner').style.display = 'block'
-        document.getElementById('log').innerHTML = ''
-    }
-</script>
+    </script>
 </body>
 </html>
