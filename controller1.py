@@ -14,6 +14,20 @@ from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process, LLM
 from crewai.tools import BaseTool
 
+import logging
+
+# Configurar el sistema de logs
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("app_debug.log", encoding="utf-8"), # Guarda en archivo
+        logging.StreamHandler()                                 # Muestra en consola
+    ]
+)
+logger = logging.getLogger(__name__)
+
+
 load_dotenv()
 
 litellm.num_retries = 5
@@ -115,13 +129,13 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
 
     class LectorTool(BaseTool):
         name: str = "Lector"
-        description: str = "Lee un archivo local. Parámetro: filename (ej: context.md)"
+        description: str = "Lee el contenido de un archivo. Úsalo para leer 'context.md', 'memory.md' o archivos generados como 'app_generada/main.py', 'app_generada/index.html', 'app_generada/style.css'"
 
         def _run(self, filename: str) -> str:
             try:
                 clean = os.path.basename(filename)
                 if not os.path.exists(clean):
-                    return f"'{clean}' no existe, continúa sin él."
+                    return f"'{clean}' no existe, Asume que es un proyecto nuevo."
                 with open(clean, "r", encoding="utf-8") as f:
                     return f.read()
             except Exception as e:
@@ -203,40 +217,62 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
             q.put({"tipo": tipo, "mensaje": msg}), loop
         )
 
+    # 1. CREAMOS EL CALLBACK PARA CAPTURAR LOS PENSAMIENTOS
+    def creador_callback(nombre_agente):
+        def callback(paso):
+            try:
+                # CrewAI devuelve una lista de acciones en el paso
+                if isinstance(paso, list) and len(paso) > 0:
+                    accion = paso[0][0] if isinstance(paso[0], tuple) else paso[0]
+                    texto = getattr(accion, 'log', '') or getattr(accion, 'text', '')
+                    if texto:
+                        # Limpiamos un poco el texto y lo enviamos al frontend
+                        resumen = texto.strip().split('\n')[0][:150]
+                        emit("agente", f"🤖 [{nombre_agente}] {resumen}...")
+            except Exception as e:
+                pass # Ignoramos errores de formato del callback
+        return callback
+
     try:
         emit("inicio", "🚀 Iniciando generación...")
 
         lector, guardar_main, guardar_html, guardar_css, guardar_memory = make_tools(q, loop)
 
+        # 2. AGREGAMOS EL CALLBACK A CADA AGENTE
         planificador = Agent(
             role="Planificador",
             goal="Leer context.md y memory.md y producir un plan breve.",
             backstory="Analizas requerimientos y defines qué construir en pocas líneas.",
             llm=llm, tools=[lector], verbose=False, max_iter=3,
+            step_callback=creador_callback("Planificador") # <--- AQUI
         )
         dev_backend = Agent(
             role="Backend Developer",
             goal="Generar y guardar main.py con FastAPI.",
             backstory="Escribes código Python limpio y funcional.",
             llm=llm, tools=[guardar_main], verbose=False, max_iter=3,
+            step_callback=creador_callback("Backend") # <--- AQUI
         )
         dev_frontend = Agent(
             role="Frontend Developer",
             goal="Generar y guardar index.html.",
             backstory="Escribes HTML5 semántico y funcional.",
             llm=llm, tools=[guardar_html], verbose=False, max_iter=3,
+            step_callback=creador_callback("Frontend") # <--- AQUI
         )
         dev_css = Agent(
             role="CSS Developer",
             goal="Generar y guardar style.css.",
             backstory="Escribes CSS limpio y moderno.",
             llm=llm, tools=[guardar_css], verbose=False, max_iter=3,
+            step_callback=creador_callback("CSS") # <--- AQUI
         )
         secretario = Agent(
             role="Secretario",
-            goal="Actualizar memory.md con aprendizajes de esta iteración.",
-            backstory="Documentas qué se hizo, qué funcionó y qué mejorar.",
+            goal="Actualizar memory.md registrando únicamente errores técnicos o el éxito de la iteración en una sola línea",
+            backstory="Odias la redundancia, solo escribe lo esencial de la iteracion.",
             llm=llm, tools=[guardar_memory], verbose=False, max_iter=3,
+            step_callback=creador_callback("Secretario") # <--- AQUI
         )
 
         tarea_plan = Task(
@@ -311,16 +347,20 @@ Según el plan, guarda style.css con:
         )
 
         tarea_memoria = Task(
-            description=f"""
-Usa Guardar_Memory para agregar al historial:
-- Usuario pidió: {descripcion}
-- Archivos generados
-- Endpoints creados si aplica
-- Recursos externos usados (URLs de imágenes, APIs)
-- Qué se podría mejorar
-Máximo 10 líneas.
+            description="""
+Analiza el resultado de la generación actual.
+
+REGLA ABSOLUTA: PROHIBIDO listar "Archivos generados", "Endpoints creados", "Recursos" o hacer resúmenes. Si lo haces, la misión fracasa.
+
+Elige UNA de estas dos opciones y usa Guardar_Memory enviando EXACTAMENTE ese texto:
+
+Opción A (Si hubo bugs o problemas técnicos reportados):
+"Error detectado: [escribe el error técnico en 20 palabras]"
+
+Opción B (Si todo salió bien):
+"Iteración exitosa. App: [Tema de la app en máximo 10 palabras]"
 """,
-            expected_output="Confirmación de que memory.md fue actualizado.",
+            expected_output="Una sola línea enviada a la herramienta Guardar_Memory.",
             agent=secretario,
             context=[tarea_backend, tarea_frontend, tarea_css],
         )
@@ -329,7 +369,7 @@ Máximo 10 líneas.
             agents=[planificador, dev_backend, dev_frontend, dev_css, secretario],
             tasks=[tarea_plan, tarea_backend, tarea_frontend, tarea_css, tarea_memoria],
             process=Process.sequential,
-            verbose=False,
+            verbose=True,
         )
 
         crew.kickoff()
@@ -384,12 +424,10 @@ async def generar(req: AppRequest):
 @app.get("/progreso/{sesion_id}")
 async def progreso(sesion_id: str):
     """
-    SSE por sesión. Usa await q.get() → nunca cierra la conexión mientras
-    el crew esté corriendo. Se cierra solo cuando llega 'finalizado' o 'error'.
+    SSE por sesión. Mantiene la conexión viva enviando pings si los agentes tardan mucho.
     """
     async def stream():
-        # Espera hasta 30 s a que la sesión exista (race condition entre
-        # SSE abierto y el POST /generar)
+        # Espera hasta 30 s a que la sesión exista
         for _ in range(30):
             if sesion_id in _sesiones:
                 break
@@ -402,14 +440,24 @@ async def progreso(sesion_id: str):
         q = _sesiones[sesion_id]
         try:
             while True:
-                # await q.get() bloquea de forma eficiente hasta que llegue un evento
-                evento = await asyncio.wait_for(q.get(), timeout=120)
-                data = json.dumps(evento, ensure_ascii=False)
-                yield f"data: {data}\n\n"
-                if evento["tipo"] in ["finalizado", "error"]:
-                    break
-        except asyncio.TimeoutError:
-            yield 'data: {"tipo":"error","mensaje":"⏱ Timeout: el crew tardó demasiado"}\n\n'
+                try:
+                    # Bajamos el timeout del queue a 3 segundos. 
+                    # Si no hay mensajes nuevos en 3s, lanzará TimeoutError.
+                    evento = await asyncio.wait_for(q.get(), timeout=3.0)
+                    data = json.dumps(evento, ensure_ascii=False)
+                    yield f"data: {data}\n\n"
+                    
+                    if evento["tipo"] in ["finalizado", "error"]:
+                        # IMPORTANTE: Pausa de medio segundo antes de romper el bucle
+                        # para asegurar que Uvicorn envíe este último chunk al navegador.
+                        await asyncio.sleep(0.5)
+                        break
+                
+                except asyncio.TimeoutError:
+                    # El LLM está pensando. Enviamos un ping para que 
+                    # el navegador no cierre la conexión por inactividad.
+                    yield 'data: {"tipo":"ping"}\n\n'
+                    
         finally:
             # Limpia la sesión al terminar
             _sesiones.pop(sesion_id, None)
@@ -424,7 +472,6 @@ async def progreso(sesion_id: str):
         },
     )
 
-
 @app.post("/feedback")
 def recibir_feedback(req: FeedbackRequest):
     try:
@@ -432,10 +479,18 @@ def recibir_feedback(req: FeedbackRequest):
         if os.path.exists("memory.md"):
             with open("memory.md", "r", encoding="utf-8") as f:
                 historial = f.read()
+                
         fecha = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-        entrada = f"\n\n## Feedback {fecha}\n- App: {req.descripcion}\n- Resultado: 👍 Aprobada"
+        
+        # Guardamos la instrucción como un requerimiento nuevo en la memoria
+        if req.tipo == "mejora":
+            entrada = f"\n\n## Sugerencia del usuario ({fecha})\n- Petición de mejora: {req.descripcion}\n- Acción: El usuario solicitó aplicar estos cambios a la base de código actual."
+        else:
+            entrada = f"\n\n## Feedback ({fecha})\n- App: {req.descripcion}\n- Resultado: 👍 Aprobada"
+            
         with open("memory.md", "w", encoding="utf-8") as f:
             f.write(historial + entrada)
+            
         return {"ok": True}
     except Exception as e:
         return {"ok": False, "error": str(e)}

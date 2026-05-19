@@ -53,14 +53,45 @@
     </main>
 
     <script>
-        const API = 'http://localhost:8000'
+        // ─── Ruta relativa: funciona en localhost y en cualquier deploy ───
+        const API = 'http://127.0.0.1:8000'
+
         let source = null
         let descripcionActual = ''
+        let timeoutHandle = null
+        const TIMEOUT_MS = 10 * 60 * 1000  // 10 minutos
+
+        // ─── Genera un UUID v4 simple para identificar cada sesión ───
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0
+                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
+            })
+        }
 
         function mostrarEstado(estado) {
-            document.getElementById('estado-input').style.display = estado === 'input' ? 'block' : 'none'
+            document.getElementById('estado-input').style.display     = estado === 'input'     ? 'block' : 'none'
             document.getElementById('estado-generando').style.display = estado === 'generando' ? 'block' : 'none'
-            document.getElementById('estado-listo').style.display = estado === 'listo' ? 'block' : 'none'
+            document.getElementById('estado-listo').style.display     = estado === 'listo'     ? 'block' : 'none'
+        }
+
+        function setStatus(msg) {
+            document.getElementById('status-text').textContent = msg
+        }
+
+        function limpiarTimeout() {
+            if (timeoutHandle) {
+                clearTimeout(timeoutHandle)
+                timeoutHandle = null
+            }
+        }
+
+        function cerrarSSE() {
+            if (source) {
+                source.close()
+                source = null
+            }
+            limpiarTimeout()
         }
 
         async function generar() {
@@ -69,56 +100,85 @@
             await lanzarCrew(descripcionActual)
         }
 
-       async function lanzarCrew(descripcion) {
-    mostrarEstado('generando')
-    document.getElementById('status-text').textContent = 'Paso 1: Abriendo conexión SSE...'
+        async function lanzarCrew(descripcion) {
+            mostrarEstado('generando')
+            setStatus('Preparando sesión...')
 
-    if (source) source.close()
-    source = new EventSource(`${API}/progreso`)
+            // Cierra cualquier SSE anterior para evitar listeners huérfanos
+            cerrarSSE()
 
-    source.onopen = () => {
-        document.getElementById('status-text').textContent = 'Paso 2: SSE conectado, enviando POST...'
-    }
+            // UUID único por ejecución — el servidor aísla los eventos por sesión
+            const sesionId = uuidv4()
 
-    source.onmessage = (e) => {
-        const data = JSON.parse(e.data)
-        console.log('evento:', data)
-        if (data.tipo === 'ping') {
-            document.getElementById('status-text').textContent = '📡 Ping recibido, esperando crew...'
-            return
+            // ── 1. Abre el SSE ANTES del POST para no perder el evento "inicio" ──
+            setStatus('Abriendo canal de progreso...')
+            source = new EventSource(`${API}/progreso/${sesionId}`)
+
+            // Desactiva reconexión automática del browser:
+            // si el servidor cierra la conexión intencionalmente, no queremos
+            // que EventSource vuelva a conectar y cree una sesión fantasma.
+            source.addEventListener('error', () => {
+                // Solo cerramos; el handler onerror ya muestra el mensaje.
+                source.close()
+            })
+
+            source.onmessage = (e) => {
+                const data = JSON.parse(e.data)
+
+                if (data.tipo === 'ping') return  // heartbeat silencioso
+
+                setStatus(data.mensaje)
+
+                if (data.tipo === 'finalizado') {
+                    cerrarSSE()
+                    mostrarEstado('listo')           // ← aquí aparece la ventana de feedback
+                    return
+                }
+
+                if (data.tipo === 'error') {
+                    cerrarSSE()
+                    setStatus(`❌ ${data.mensaje}`)
+                    // Vuelve al input después de 4 segundos para que el usuario pueda reintentar
+                    setTimeout(() => mostrarEstado('input'), 4000)
+                    return
+                }
+            }
+
+            source.onerror = () => {
+                // Solo dispara si el SSE se cae inesperadamente (no por cierre intencional)
+                if (source && source.readyState === EventSource.CLOSED) return
+                cerrarSSE()
+                setStatus('❌ Se perdió la conexión con el servidor.')
+                setTimeout(() => mostrarEstado('input'), 4000)
+            }
+
+            // ── 2. Timeout de seguridad: si en 10 min no llega "finalizado" ──
+            timeoutHandle = setTimeout(() => {
+                cerrarSSE()
+                setStatus('⏱ Tiempo máximo superado. Intenta de nuevo.')
+                setTimeout(() => mostrarEstado('input'), 4000)
+            }, TIMEOUT_MS)
+
+            // ── 3. Espera breve para que el SSE esté abierto antes del POST ──
+            await new Promise(r => setTimeout(r, 600))
+
+            setStatus('Enviando descripción a los agentes...')
+
+            try {
+                const res = await fetch(`${API}/generar`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ descripcion, sesion_id: sesionId })
+                })
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}`)
+                }
+            } catch (err) {
+                cerrarSSE()
+                setStatus(`❌ No se pudo contactar el servidor: ${err.message}`)
+                setTimeout(() => mostrarEstado('input'), 4000)
+            }
         }
-        document.getElementById('status-text').textContent = data.mensaje
-        if (data.tipo === 'finalizado') {
-            source.close()
-            mostrarEstado('listo')
-        }
-        if (data.tipo === 'error') {
-            source.close()
-        }
-    }
-
-    source.onerror = (e) => {
-        document.getElementById('status-text').textContent = `❌ SSE error: ${JSON.stringify(e)}`
-        source.close()
-    }
-
-    // Espera que el SSE esté abierto antes del POST
-    await new Promise(r => setTimeout(r, 1000))
-
-    document.getElementById('status-text').textContent = 'Paso 3: Enviando petición al servidor...'
-
-    try {
-        const res = await fetch(`${API}/generar`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ descripcion })
-        })
-        const json = await res.json()
-        document.getElementById('status-text').textContent = `Paso 4: Servidor respondió: ${JSON.stringify(json)}`
-    } catch (err) {
-        document.getElementById('status-text').textContent = `❌ Fetch falló: ${err.message}`
-    }
-}
 
         function feedback(tipo) {
             if (tipo === 'ok') {

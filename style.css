@@ -222,3 +222,10 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
     color: var(--muted);
     margin-top: 0.8rem;
 }
+
+.chips-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+.chip {
+    background: #2a2a40; color: #fff; border: 1px solid #444; 
+    padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 0.9em;
+}
+.chip.active { background: #6c63ff; border-color: #6c63ff; }

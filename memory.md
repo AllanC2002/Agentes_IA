@@ -1,35 +1,15 @@
-Se ha creado un servidor web con FastAPI que sirve un archivo index.html con un estilo definido en style.css. El archivo index.html contiene una imagen de un perro y un script que hace una solicitud a /api/data. El estilo se ha definido en style.css con un fondo de color #1a1a2e y texto de color #ffffff.
+# Memoria de Aprendizaje
+Este archivo almacena lecciones críticas aprendidas de errores pasados. No es un log de ejecución.
 
-## Iteración 2026-05-18 18:52
-Se creó una aplicación FastAPI con un endpoint en '/' que devuelve un archivo index.html. El archivo index.html contiene una imagen de un perro desde https://example.com/perro.jpg y un script que hace una petición a '/api/data'. Se generaron los archivos index.html y style.css. No se implementó el endpoint '/api/data' lo que podría generar un error. Se podría mejorar la aplicación implementando el endpoint '/api/data' y manejando posibles errores.
+## Errores corregidos históricamente (NO REPETIR)
+1. **Error de Fetch:** El frontend fallaba al hacer peticiones relativas. *Solución:* Todas las llamadas fetch() deben usar la ruta completa: `http://localhost:8001/api/..`
+2. **Backend innecesario:** Se creaba lógica de API para datos que nunca cambian. *Solución:* Si la app solo muestra información fija (ej. datos de un país), haz un HTML estático puro, sin endpoints de FastAPI extra.
+3. **Objetos en el DOM:** Se intentaba pintar JSON directamente. *Solución:* Usar `data.propiedad` en lugar de imprimir `[object Object]`.
+4. **Archivos CSS desconectados:** *Solución:* El endpoint raíz siempre sirve index.html, y este siempre debe tener `<link rel="stylesheet" href="style.css">`.
+5. **APIs externas:** *Solución:* Si necesitan una api key, evitar el uso de las mismas.
 
-## Iteración 2026-05-18 18:52
-El usuario pidió documentar la construcción de una aplicación FastAPI. Se crearon los archivos index.html y style.css. La aplicación tiene un endpoint en '/' y se hace una petición a '/api/data' desde el frontend, pero este endpoint no está implementado. Se usó la URL https://example.com/perro.jpg para obtener una imagen. Para mejorar, se podría implementar el endpoint '/api/data' y manejar posibles errores.
-
-## Iteración 2026-05-18 18:53
-Se documentó la construcción de una aplicación FastAPI con un endpoint en '/' que devuelve un archivo index.html. El archivo index.html contiene una imagen de un perro desde https://example.com/perro.jpg y un script que hace una petición a '/api/data'. Se generaron los archivos index.html y style.css. El endpoint '/api/data' no está implementado, lo que podría generar un error. Se podría mejorar la aplicación implementando el endpoint '/api/data' y manejando posibles errores. La aplicación se ejecuta en el puerto 8000.
-
-
-## Iteración 2026-05-18 21:18
-Se agregó un endpoint raíz que devuelve un archivo index.html. Se generaron los archivos index.html y style.css. La app tiene un endpoint en /. Se podría mejorar la funcionalidad del endpoint /api/date que no está implementado. Se usó la librería FastAPI y uvicorn para correr la app.
-El usuario pidió documentar lo construido. Se generaron los archivos index.html y style.css. La app tiene un endpoint en /. Se podría mejorar la funcionalidad del endpoint /api/date que no está implementado. Se usó la librería FastAPI y uvicorn para correr la app. Se agregó un archivo sun.jpg.
+## Sugerencias del usuario pendientes:
 
 
-## Iteración 2026-05-18 21:30
-Se generó una app con una tabla de 5 equipos de fútbol. Archivos generados: main.py, index.html, style.css. Endpoints creados: /api/equipo/{equipo_id}, /api/equipos. Recursos externos usados: none. Mejoras posibles: agregar más equipos, mejorar la interfaz de usuario.
-
-## Iteración 2026-05-18 21:30
-Usuario pidió: generame una app que tenga una tabla de 5 equipos de futbol. Archivos generados: main.py, index.html, style.css. Endpoints creados: /api/equipo/{equipo_id}, /api/equipos. Recursos externos usados: none. Mejoras posibles: agregar más equipos, mejorar la interfaz de usuario.
-
-## Iteración 2026-05-18 21:44
-Se generó una app con una única ruta que muestra una tabla con 5 equipos de fútbol. Archivos generados: main.py, index.html, style.css. Endpoints creados: /. Recursos externos usados: none. Mejoras posibles: agregar más equipos, agregar funcionalidad para agregar o eliminar equipos.
-Usuario pidió: genera una app que solo tenga una unica ruta es decir la default, en la que aparezca una tabla con 5 equipos de futbol que tu digas nada mas es simple. Archivos generados: main.py, index.html, style.css. Endpoints creados: /. Recursos externos usados: none. Qué se podría mejorar: agregar más equipos, agregar funcionalidad para agregar o eliminar equipos.
-
-## Iteración 2026-05-18 22:36
-Se creó una app con endpoints para obtener equipos de fútbol y un jugador. Archivos generados: main.py, index.html, style.css. Endpoints: /api/equipos, /api/equipo/{equipo_id}. Recursos externos: none. Mejoras: Agregar descripción a los equipos.
-
-## Iteración 2026-05-18 22:37
-Usuario pidió: una app que tenga equipos de fútbol y que aparte tenga un jugador del mismo, es decir una tabla. Archivos generados: main.py, index.html, style.css. Endpoints creados: /api/equipos, /api/equipo/{equipo_id}. Recursos externos usados: none. Qué se podría mejorar: Agregar descripción a los equipos y mejorar la interfaz de usuario.
-
-## Iteración 2026-05-18 22:44
-Se generó una aplicación que muestra la hora actual. Archivos generados: main.py, index.html, style.css. Endpoints creados: /. Recursos externos: none. Mejoras: agregar más funcionalidades a la aplicación.
+## Iteración 2026-05-19 14:06
+Se creó una aplicación simple que muestra la hora actual. Se generaron los archivos main.py, index.html y style.css. Se creó un endpoint /api/hora que devuelve la hora actual en formato JSON. No se utilizaron recursos externos. La aplicación se puede mejorar agregando más funcionalidades o mejorando la interfaz de usuario.

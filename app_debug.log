@@ -1,0 +1,366 @@
+2026-05-19 11:37:35,613 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:37:36,549 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:37:52,555 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:37:53,300 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:38:09,319 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:38:10,360 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:38:26,365 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:38:27,276 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:38:43,309 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:38:44,276 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:39:00,281 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:39:01,023 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:39:17,026 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:39:17,966 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:39:33,969 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:39:34,750 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:39:50,764 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:39:52,293 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:40:08,296 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:40:08,868 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:40:24,871 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:40:25,651 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:40:41,674 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:40:42,424 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:40:58,428 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:40:59,219 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:41:15,222 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:41:15,882 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:53:29,679 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:53:30,834 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:53:46,839 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:53:47,527 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:54:03,546 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:54:04,640 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:54:20,644 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:54:21,466 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:54:37,487 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:54:38,452 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:54:54,456 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:54:55,320 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:55:11,323 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:55:12,400 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:55:28,403 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:55:29,128 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:55:45,142 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:55:45,785 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:56:01,789 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:56:02,355 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:56:18,358 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:56:19,034 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:56:35,057 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:56:35,917 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:56:51,923 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:56:52,855 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 11:57:08,857 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 11:57:09,592 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:08:24,972 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:08:26,095 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:08:42,099 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:08:42,780 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:08:58,805 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:08:59,616 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:09:15,620 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:09:16,420 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:09:32,435 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:09:34,677 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:09:50,681 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:09:51,444 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:10:07,447 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:10:08,365 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:10:24,379 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:10:25,152 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:10:41,157 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:10:41,753 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:10:57,756 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:10:58,367 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:11:14,403 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:11:15,171 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:11:31,174 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:11:31,718 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:11:47,721 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:11:48,928 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:19:12,325 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:19:13,294 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:19:29,299 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:19:30,165 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:19:46,185 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:19:46,455 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:19:46,638 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:19:46,784 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:19:46,939 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:19:47,084 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:30:47,774 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:30:49,312 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:31:05,316 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:31:05,604 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:31:05,992 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:31:06,155 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:31:06,318 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:31:06,476 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:44:10,777 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:44:11,887 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:44:27,892 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:44:28,119 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:44:28,279 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:44:28,432 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:44:28,589 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:44:28,742 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:47:42,313 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:47:43,292 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 12:47:59,297 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:47:59,526 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:47:59,693 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:47:59,848 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:48:00,004 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 12:48:00,156 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:14:04,809 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:14:05,844 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:14:21,850 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:14:22,549 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:14:38,580 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:14:39,783 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:14:55,786 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:14:56,683 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:15:12,702 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:15:13,618 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:15:29,622 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:15:30,539 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:15:46,542 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:15:47,855 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:16:03,858 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:16:04,627 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:16:20,649 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:16:21,235 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:16:37,239 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:16:37,800 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:16:53,829 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:16:54,706 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:17:10,709 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:17:11,262 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:17:27,265 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:17:27,983 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:26:23,678 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:26:24,497 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:26:40,502 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:26:41,207 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:26:57,234 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:26:58,171 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:27:14,175 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:27:14,850 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:27:30,866 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:27:31,579 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:27:47,583 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:27:48,491 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:28:04,493 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:28:05,163 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:28:21,166 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:28:22,152 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:28:38,169 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:28:38,888 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:28:54,892 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:28:55,695 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:29:11,712 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:29:13,834 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:29:29,837 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:29:30,612 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:29:46,616 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:29:47,186 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:43:34,108 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:43:35,032 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:43:51,038 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:43:52,388 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:44:08,412 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:44:09,148 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:44:25,151 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:44:25,746 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:44:41,763 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:44:42,865 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:44:58,869 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:45:00,048 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:45:16,051 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:45:16,853 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:45:32,856 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:45:33,777 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:45:49,794 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:45:51,363 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:46:07,367 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:46:08,042 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:46:24,057 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:46:24,831 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 13:46:40,835 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 13:46:41,622 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:03:52,285 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:03:53,116 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:04:09,121 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:04:09,999 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:04:26,022 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:04:26,945 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:04:42,949 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:04:43,772 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:04:59,791 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:05:00,485 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:05:16,489 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:05:17,204 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:05:33,207 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:05:34,240 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:05:50,243 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:05:51,194 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:06:07,207 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:06:08,255 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:06:24,258 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:06:25,584 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:06:41,598 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:06:42,529 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 14:06:58,533 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 14:06:59,362 [INFO] Wrapper: Completed Call, calling success_handler
+2026-05-19 17:48:01,869 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 17:48:02,092 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 17:48:02,250 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 17:48:02,398 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 17:48:02,541 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 17:48:02,678 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:01:25,667 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:01:25,912 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:01:26,070 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:01:26,212 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:01:26,361 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:01:26,507 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:06:33,256 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:07:55,196 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-05-19 18:08:31,347 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
