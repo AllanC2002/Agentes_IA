@@ -5,6 +5,7 @@ import queue
 import datetime
 import threading
 import litellm
+import asyncio
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
@@ -337,18 +338,29 @@ def generar(req: AppRequest):
     return {"ok": True}
 
 @app.get("/progreso")
-def progreso():
-    def stream():
-        while True:
+async def progreso():
+    async def stream():
+        finalizado = False
+        while not finalizado:
             try:
-                evento = event_queue.get(timeout=60)
+                evento = event_queue.get_nowait()
                 data = json.dumps(evento, ensure_ascii=False)
                 yield f"data: {data}\n\n"
                 if evento["tipo"] in ["finalizado", "error"]:
-                    break
+                    finalizado = True
             except queue.Empty:
                 yield 'data: {"tipo": "ping"}\n\n'
-    return StreamingResponse(stream(), media_type="text/event-stream")
+                await asyncio.sleep(1)
+    
+    return StreamingResponse(
+        stream(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+            "Connection": "keep-alive",
+        }
+    )
 
 @app.post("/feedback")
 def recibir_feedback(req: FeedbackRequest):

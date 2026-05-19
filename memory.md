@@ -24,3 +24,12 @@ Usuario pidió: generame una app que tenga una tabla de 5 equipos de futbol. Arc
 ## Iteración 2026-05-18 21:44
 Se generó una app con una única ruta que muestra una tabla con 5 equipos de fútbol. Archivos generados: main.py, index.html, style.css. Endpoints creados: /. Recursos externos usados: none. Mejoras posibles: agregar más equipos, agregar funcionalidad para agregar o eliminar equipos.
 Usuario pidió: genera una app que solo tenga una unica ruta es decir la default, en la que aparezca una tabla con 5 equipos de futbol que tu digas nada mas es simple. Archivos generados: main.py, index.html, style.css. Endpoints creados: /. Recursos externos usados: none. Qué se podría mejorar: agregar más equipos, agregar funcionalidad para agregar o eliminar equipos.
+
+## Iteración 2026-05-18 22:36
+Se creó una app con endpoints para obtener equipos de fútbol y un jugador. Archivos generados: main.py, index.html, style.css. Endpoints: /api/equipos, /api/equipo/{equipo_id}. Recursos externos: none. Mejoras: Agregar descripción a los equipos.
+
+## Iteración 2026-05-18 22:37
+Usuario pidió: una app que tenga equipos de fútbol y que aparte tenga un jugador del mismo, es decir una tabla. Archivos generados: main.py, index.html, style.css. Endpoints creados: /api/equipos, /api/equipo/{equipo_id}. Recursos externos usados: none. Qué se podría mejorar: Agregar descripción a los equipos y mejorar la interfaz de usuario.
+
+## Iteración 2026-05-18 22:44
+Se generó una aplicación que muestra la hora actual. Archivos generados: main.py, index.html, style.css. Endpoints creados: /. Recursos externos: none. Mejoras: agregar más funcionalidades a la aplicación.

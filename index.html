@@ -15,24 +15,19 @@
             <p class="subtitle">Describe tu app y la IA la construye por ti</p>
         </header>
 
-        <!-- ESTADO 1: Input -->
         <section id="estado-input">
-            <textarea id="descripcion" placeholder="Ej: una app de lista de tareas con opción de marcar como completado..." rows="4"></textarea>
-            <button id="btn-generar" onclick="generar()">
-                Generar App <span>→</span>
-            </button>
+            <textarea id="descripcion" placeholder="Ej: una app de lista de tareas..." rows="4"></textarea>
+            <button id="btn-generar" onclick="generar()">Generar App <span>→</span></button>
         </section>
 
-        <!-- ESTADO 2: Generando -->
         <section id="estado-generando" style="display:none">
             <div class="spinner-wrap">
                 <div class="spinner"></div>
                 <span id="status-text">Iniciando agentes...</span>
             </div>
-            <p class="aviso">⏳ Esto puede tomar varios minutos. Los agentes están trabajando en tu app.</p>
+            <p class="aviso">⏳ Esto puede tomar varios minutos.</p>
         </section>
 
-        <!-- ESTADO 3: Listo -->
         <section id="estado-listo" style="display:none">
             <div class="resultado-header">
                 <span class="check">✓</span>
@@ -42,7 +37,6 @@
                 <span class="cmd-label">Para ejecutarla:</span>
                 <code>cd app_generada && python main.py</code>
             </div>
-
             <div class="feedback-wrap">
                 <p class="feedback-label">¿Qué tal quedó?</p>
                 <div class="feedback-btns">
@@ -51,14 +45,11 @@
                     <button class="btn-secondary" onclick="feedback('regenerar')">🔄 Regenerar todo</button>
                 </div>
             </div>
-
-            <!-- Solo aparece si elige "Mejorar algo" -->
             <div id="mejora-wrap" style="display:none">
-                <textarea id="mejora-texto" placeholder="¿Qué específicamente falló o falta? Sé específico..." rows="3"></textarea>
+                <textarea id="mejora-texto" placeholder="¿Qué específicamente falló o falta?..." rows="3"></textarea>
                 <button onclick="enviarMejora()">Aplicar mejora →</button>
             </div>
         </section>
-
     </main>
 
     <script>
@@ -78,51 +69,56 @@
             await lanzarCrew(descripcionActual)
         }
 
-        async function lanzarCrew(descripcion) {
-            mostrarEstado('generando')
-            document.getElementById('status-text').textContent = 'Conectando con los agentes...'
-            document.getElementById('mejora-wrap').style.display = 'none'
+       async function lanzarCrew(descripcion) {
+    mostrarEstado('generando')
+    document.getElementById('status-text').textContent = 'Paso 1: Abriendo conexión SSE...'
 
-            if (source) source.close()
-            source = new EventSource(`${API}/progreso`)
+    if (source) source.close()
+    source = new EventSource(`${API}/progreso`)
 
-            source.onmessage = (e) => {
-                const data = JSON.parse(e.data)
-                if (data.tipo === 'ping') return
+    source.onopen = () => {
+        document.getElementById('status-text').textContent = 'Paso 2: SSE conectado, enviando POST...'
+    }
 
-                document.getElementById('status-text').textContent = data.mensaje
-
-                if (data.tipo === 'finalizado') {
-                    source.close()
-                    mostrarEstado('listo')
-                }
-
-                if (data.tipo === 'error') {
-                    source.close()
-                    document.getElementById('status-text').textContent = data.mensaje
-                }
-            }
-
-            source.onerror = () => {
-                document.getElementById('status-text').textContent = '❌ Error de conexión con el servidor'
-                source.close()
-            }
-
-            await new Promise(r => setTimeout(r, 500))
-
-            try {
-                const res = await fetch(`${API}/generar`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ descripcion })
-                })
-                if (!res.ok) {
-                    document.getElementById('status-text').textContent = '❌ Error al iniciar la generación'
-                }
-            } catch (err) {
-                document.getElementById('status-text').textContent = `❌ No se pudo conectar: ${err.message}`
-            }
+    source.onmessage = (e) => {
+        const data = JSON.parse(e.data)
+        console.log('evento:', data)
+        if (data.tipo === 'ping') {
+            document.getElementById('status-text').textContent = '📡 Ping recibido, esperando crew...'
+            return
         }
+        document.getElementById('status-text').textContent = data.mensaje
+        if (data.tipo === 'finalizado') {
+            source.close()
+            mostrarEstado('listo')
+        }
+        if (data.tipo === 'error') {
+            source.close()
+        }
+    }
+
+    source.onerror = (e) => {
+        document.getElementById('status-text').textContent = `❌ SSE error: ${JSON.stringify(e)}`
+        source.close()
+    }
+
+    // Espera que el SSE esté abierto antes del POST
+    await new Promise(r => setTimeout(r, 1000))
+
+    document.getElementById('status-text').textContent = 'Paso 3: Enviando petición al servidor...'
+
+    try {
+        const res = await fetch(`${API}/generar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ descripcion })
+        })
+        const json = await res.json()
+        document.getElementById('status-text').textContent = `Paso 4: Servidor respondió: ${JSON.stringify(json)}`
+    } catch (err) {
+        document.getElementById('status-text').textContent = `❌ Fetch falló: ${err.message}`
+    }
+}
 
         function feedback(tipo) {
             if (tipo === 'ok') {
@@ -133,11 +129,9 @@
                 })
                 document.getElementById('descripcion').value = ''
                 mostrarEstado('input')
-
             } else if (tipo === 'mejorar') {
                 document.getElementById('mejora-wrap').style.display = 'block'
                 document.getElementById('mejora-texto').focus()
-
             } else if (tipo === 'regenerar') {
                 lanzarCrew(descripcionActual)
             }
@@ -146,9 +140,8 @@
         async function enviarMejora() {
             const mejora = document.getElementById('mejora-texto').value.trim()
             if (!mejora) return
-            const descripcionConMejora = `${descripcionActual}. MEJORA SOLICITADA: ${mejora}`
-            descripcionActual = descripcionConMejora
-            await lanzarCrew(descripcionConMejora)
+            descripcionActual = `${descripcionActual}. MEJORA SOLICITADA: ${mejora}`
+            await lanzarCrew(descripcionActual)
         }
     </script>
 </body>
