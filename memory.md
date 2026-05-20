@@ -10,6 +10,17 @@ Este archivo almacena lecciones críticas aprendidas de errores pasados. No es u
 
 ## Sugerencias del usuario pendientes:
 
+## Iteración 2026-05-19 19:37
+Usuario pidió: aplicacion simple que me de una informacion de allan poe es decir solo el nombre completo y su edad, no agregues endpoints innecesarios. Archivos generados: main.py, index.html, style.css. Endpoints creados: /. Recursos externos usados: none. Qué se podría mejorar: agregar más información sobre Allan Poe o implementar una base de datos para almacenar la información.
 
-## Iteración 2026-05-19 14:06
-Se creó una aplicación simple que muestra la hora actual. Se generaron los archivos main.py, index.html y style.css. Se creó un endpoint /api/hora que devuelve la hora actual en formato JSON. No se utilizaron recursos externos. La aplicación se puede mejorar agregando más funcionalidades o mejorando la interfaz de usuario.
+## Feedback 2026-05-19 19:39
+- App: En la parte de Html, sugiero siempre empezar con un titulo referente al tema en el body
+
+## Iteración 2026-05-19 19:42
+Se agregó un título referente al tema en el body de index.html. Archivos generados: index.html, style.css. Endpoints creados: /. Recursos externos usados: none. Mejora sugerida: Empezar con un título referente al tema en el body. Se aplicó la mejora en la categoría Frontend (index.html).
+
+## Feedback 2026-05-19 19:47
+- App: Falto la informacion de la edad y una obra representativa, con respecto a Allan poe
+
+## Iteración 2026-05-19 19:51
+Se agregó la información de la edad y una obra representativa de Allan Poe en el archivo index.html. Se mejoró la presentación en la categoría Frontend. Archivos generados: index.html, style.css. Endpoints creados: / (root). Recursos externos usados: none. Mejoras posibles: agregar más obras de Allan Poe, mejorar la interfaz de usuario.

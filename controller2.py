@@ -268,11 +268,11 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
             step_callback=creador_callback("CSS") # <--- AQUI
         )
         secretario = Agent(
-            role="Documentador Técnico Senior",
-            goal="Registrar el estado funcional actual de la aplicación para futuras iteraciones, sin extenderte mas de dos lineas.",
-            backstory="Eres un ingeniero que deja notas de entrega para el siguiente turno. Documentas QUÉ hace la app actualmente y qué elementos visuales o endpoints tiene. Odias la redundancia: nunca listas los nombres de los archivos generados porque asumes que el equipo ya sabe que son main.py, index.html y style.css. Solo escribes lo esencial para que el próximo ciclo de desarrollo entienda el estado actual de la app sin leer código. Si detectas errores técnicos, los documentas claramente para que el planificador los entienda y corrija en la siguiente iteración.",
-            llm=llm, tools=[guardar_memory], verbose=False, max_iter=3,
-            step_callback=creador_callback("Secretario") # <--- AQUI
+            role="Secretario",
+            goal="Guardar exactamente 2 líneas en memory.md siguiendo la plantilla.",
+            backstory="Eres una función que solo escribe 2 líneas estructuradas. Nada más.",
+            llm=llm, tools=[guardar_memory], verbose=False, max_iter=2,
+            step_callback=creador_callback("Secretario")
         )
 
         tarea_plan = Task(
@@ -347,20 +347,21 @@ Según el plan, guarda style.css con:
         )
 
         tarea_memoria = Task(
-            description="""
-Analiza lo que los desarrolladores acaban de construir en esta iteración.
+    description=f"""
+El usuario pidió: {descripcion}  ← (usa la variable descripcion que ya tienes)
 
-Usa la herramienta Guardar_Memory y envía tu reporte usando EXACTAMENTE esta plantilla de 2 líneas:
+Usa Guardar_Memory con EXACTAMENTE este texto, rellenando los corchetes:
 
-Estado actual: [Descripción de máximo 15 palabras de lo que hace la app hoy]
-Elementos clave: [Menciona brevemente los endpoints creados o los botones/tablas principales del HTML]
+Estado actual: [en 10 palabras qué hace la app]
+Endpoints o elementos clave: [solo los endpoints o botones principales, sin mencionar archivos]
 
-REGLAS ESTRICTAS (Si las rompes, el sistema falla):
-1. PROHIBIDO escribir "Archivos generados: main.py, index.html, style.css".
-2. PROHIBIDO sugerir mejoras (ej: "Se podría mejorar agregando..."). Deja que el usuario decida eso.
-3. PROHIBIDO mencionar recursos externos o tecnologías base (FastAPI, uvicorn).
-""",
-            expected_output="Un resumen técnico de máximo 2 líneas estructurado según la plantilla.",
+Ejemplo correcto:
+Estado actual: Muestra tarjeta con stats de Cristiano Ronaldo
+Endpoints o elementos clave: GET / sirve HTML estático con nombre, edad y goles
+
+        Escribe SOLO esas 2 líneas. Nada antes, nada después.
+        """,
+            expected_output="2 líneas exactas con el formato Estado actual / Endpoints o elementos clave.",
             agent=secretario,
             context=[tarea_backend, tarea_frontend, tarea_css],
         )
@@ -487,7 +488,7 @@ def recibir_feedback(req: FeedbackRequest):
             # Formato ultra-estructurado para que el Planificador lo entienda rápido
             entrada = f"\n\n## 🔧 CORRECCIÓN REQUERIDA ({fecha})\n- Archivo sospechoso/Categoría: {req.categoria}\n- Instrucción: {req.descripcion}\n- Acción: Usa LectorTool para leer el código actual y aplicar esta corrección."
         else:
-            entrada = f"\n\n## Feedback ({fecha})\n- App: {req.descripcion}\n- Resultado: 👍 Aprobada"
+            entrada = f"\n\n## Feedback ({fecha})\n- App: {req.descripcion}\n"
             
         with open("memory.md", "w", encoding="utf-8") as f:
             f.write(historial + entrada)
