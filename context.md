@@ -16,7 +16,7 @@
 - Ejecución: Siempre usar `uvicorn.run("main:app", host="0.0.0.0", port=8001, reload=True)`
 
 ## 3. Reglas de Frontend y CSS
-- Enlazar CSS siempre como: `<link rel="stylesheet" href="style.css">`
+- Enlazar CSS siempre como: `<link rel="stylesheet" href="/static/style.css">`
 - Peticiones (Fetch): Deben usar URLs absolutas apuntando al puerto correcto. Ejemplo: `fetch('http://localhost:8001/api/datos')`.
 - Manejo de JSON: Nunca asigne objetos completos a `textContent`. Extraiga la propiedad específica (ej. `data.mensaje`).
 - Diseño: Siempre usar una paleta Dark Mode (#1a1a2e para fondo, #ffffff para texto).

@@ -82,7 +82,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
 
 ## Reglas de HTML
-- Siempre: <link rel="stylesheet" href="style.css">
+- Siempre: <link rel="stylesheet" href="/static/style.css">
 - fetch() debe apuntar a endpoints reales definidos en el plan
 - Sin librerías externas salvo Google Fonts
 
@@ -150,7 +150,7 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
                 os.makedirs("app_generada", exist_ok=True)
                 with open("app_generada/main.py", "w", encoding="utf-8") as f:
                     f.write(content)
-                emit("✅ main.py guardado")
+                emit("main.py guardado")
                 return "OK: main.py guardado."
             except Exception as e:
                 return f"Error: {str(e)}"
@@ -164,7 +164,7 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
                 os.makedirs("app_generada", exist_ok=True)
                 with open("app_generada/index.html", "w", encoding="utf-8") as f:
                     f.write(content)
-                emit("✅ index.html guardado")
+                emit("index.html guardado")
                 return "OK: index.html guardado."
             except Exception as e:
                 return f"Error: {str(e)}"
@@ -178,7 +178,7 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
                 os.makedirs("app_generada", exist_ok=True)
                 with open("app_generada/style.css", "w", encoding="utf-8") as f:
                     f.write(content)
-                emit("✅ style.css guardado")
+                emit("style.css guardado")
                 return "OK: style.css guardado."
             except Exception as e:
                 return f"Error: {str(e)}"
@@ -197,7 +197,7 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
                 nueva_entrada = f"\n\n## Iteración {fecha}\n{content}"
                 with open("memory.md", "w", encoding="utf-8") as f:
                     f.write(historial + nueva_entrada)
-                emit("✅ memory.md actualizado")
+                emit("memory.md actualizado")
                 return "OK: memory.md actualizado."
             except Exception as e:
                 return f"Error: {str(e)}"
@@ -228,13 +228,13 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
                     if texto:
                         # Limpiamos un poco el texto y lo enviamos al frontend
                         resumen = texto.strip().split('\n')[0][:150]
-                        emit("agente", f"🤖 [{nombre_agente}] {resumen}...")
+                        emit("agente", f"[{nombre_agente}] {resumen}...")
             except Exception as e:
                 pass # Ignoramos errores de formato del callback
         return callback
 
     try:
-        emit("inicio", "🚀 Iniciando generación...")
+        emit("inicio", "Iniciando generación...")
 
         lector, guardar_main, guardar_html, guardar_css, guardar_memory = make_tools(q, loop)
 
@@ -244,28 +244,28 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
             goal="Leer context.md y memory.md y producir un plan breve.",
             backstory="Analizas requerimientos y defines qué construir en pocas líneas.",
             llm=llm, tools=[lector], verbose=False, max_iter=3,
-            step_callback=creador_callback("Planificador") # <--- AQUI
+            step_callback=creador_callback("Planificador") 
         )
         dev_backend = Agent(
             role="Backend Developer",
             goal="Generar y guardar main.py con FastAPI.",
             backstory="Escribes código Python limpio y funcional.",
             llm=llm, tools=[guardar_main], verbose=False, max_iter=3,
-            step_callback=creador_callback("Backend") # <--- AQUI
+            step_callback=creador_callback("Backend") 
         )
         dev_frontend = Agent(
             role="Frontend Developer",
             goal="Generar y guardar index.html.",
             backstory="Escribes HTML5 semántico y funcional.",
             llm=llm, tools=[guardar_html], verbose=False, max_iter=3,
-            step_callback=creador_callback("Frontend") # <--- AQUI
+            step_callback=creador_callback("Frontend") 
         )
         dev_css = Agent(
             role="CSS Developer",
             goal="Generar y guardar style.css.",
             backstory="Escribes CSS limpio y moderno.",
             llm=llm, tools=[guardar_css], verbose=False, max_iter=3,
-            step_callback=creador_callback("CSS") # <--- AQUI
+            step_callback=creador_callback("CSS") 
         )
         secretario = Agent(
             role="Secretario",
@@ -322,7 +322,7 @@ if __name__ == "__main__":
         tarea_frontend = Task(
             description="""
 Según el plan, guarda index.html con:
-- <link rel="stylesheet" href="style.css">
+- <link rel="stylesheet" href="/static/style.css">
 - El contenido que definió el planificador
 - Si hay endpoints: fetch() a esos endpoints
 - Si hay imágenes: usa URLs reales según las reglas del context.md
@@ -348,7 +348,7 @@ Según el plan, guarda style.css con:
 
         tarea_memoria = Task(
     description=f"""
-El usuario pidió: {descripcion}  ← (usa la variable descripcion que ya tienes)
+El usuario pidió: {descripcion}
 
 Usa Guardar_Memory con EXACTAMENTE este texto, rellenando los corchetes:
 
@@ -374,10 +374,10 @@ Endpoints o elementos clave: GET / sirve HTML estático con nombre, edad y goles
         )
 
         crew.kickoff()
-        emit("finalizado", "🎉 ¡App generada en app_generada/")
+        emit("finalizado", "¡App generada en app_generada/")
 
     except Exception as e:
-        emit("error", f"❌ Error: {str(e)}")
+        emit("error", f"Error: {str(e)}")
 
 
 # ─────────────────────────────────────────────
@@ -385,7 +385,7 @@ Endpoints o elementos clave: GET / sirve HTML estático con nombre, edad y goles
 # ─────────────────────────────────────────────
 class AppRequest(BaseModel):
     descripcion: str
-    sesion_id: str          # El frontend genera un UUID y lo manda aquí
+    sesion_id: str         
 
 class FeedbackRequest(BaseModel):
     tipo: str
@@ -486,7 +486,7 @@ def recibir_feedback(req: FeedbackRequest):
         
         if req.tipo == "mejora":
             # Formato ultra-estructurado para que el Planificador lo entienda rápido
-            entrada = f"\n\n## 🔧 CORRECCIÓN REQUERIDA ({fecha})\n- Archivo sospechoso/Categoría: {req.categoria}\n- Instrucción: {req.descripcion}\n- Acción: Usa LectorTool para leer el código actual y aplicar esta corrección."
+            entrada = f"\n\n## CORRECCIÓN REQUERIDA ({fecha})\n- Archivo sospechoso/Categoría: {req.categoria}\n- Instrucción: {req.descripcion}\n- Acción: Usa LectorTool para leer el código actual y aplicar esta corrección."
         else:
             entrada = f"\n\n## Feedback ({fecha})\n- App: {req.descripcion}\n"
             
