@@ -16,17 +16,15 @@ from crewai.tools import BaseTool
 
 import logging
 
-# Configurar el sistema de logs
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler("app_debug.log", encoding="utf-8"), # Guarda en archivo
-        logging.StreamHandler()                                 # Muestra en consola
+        logging.FileHandler("app_debug.log", encoding="utf-8"),
+        logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
-
 
 load_dotenv()
 
@@ -39,9 +37,6 @@ def completion_con_pausa(*args, **kwargs):
     return original_completion(*args, **kwargs)
 litellm.completion = completion_con_pausa
 
-# ─────────────────────────────────────────────
-# APP
-# ─────────────────────────────────────────────
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -53,23 +48,15 @@ app.add_middleware(
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
 
-# ─────────────────────────────────────────────
-# QUEUE POR-REQUEST (no global)
-# Cada llamada a /generar crea su propia queue
-# y la almacena aquí con un ID único.
-# ─────────────────────────────────────────────
 _sesiones: dict[str, asyncio.Queue] = {}
 
-# ─────────────────────────────────────────────
-# ARCHIVOS BASE
-# ─────────────────────────────────────────────
 CONTEXT_BASE = """# Reglas del Sistema
 
 ## Tecnologías a usar
 - Backend: FastAPI en Python
 - Frontend: HTML5 + CSS en archivos separados
 - Sin estilos inline, todo en style.css
-- Cabe aclarar que si no es necesario backend, solo generamos HTML+CSS estático (sin endpoints ni lógica)
+- Si no es necesario backend, solo generamos HTML+CSS estático (sin endpoints ni lógica)
 
 ## Imports obligatorios en main.py
 from fastapi import FastAPI
@@ -82,7 +69,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
 
 ## Reglas de HTML
-- Siempre: <link rel="stylesheet" href="style.css">
+- Siempre: <link rel="stylesheet" href="/static/style.css">
 - fetch() debe apuntar a endpoints reales definidos en el plan
 - Sin librerías externas salvo Google Fonts
 
@@ -102,9 +89,6 @@ if not os.path.exists("memory.md"):
     with open("memory.md", "w", encoding="utf-8") as f:
         f.write("# Memoria del Sistema\nIteración 0: Sin ejecuciones previas.\n")
 
-# ─────────────────────────────────────────────
-# LLM
-# ─────────────────────────────────────────────
 llm = LLM(
     model="groq/llama-3.3-70b-versatile",
     api_key=os.environ.get("GROQ_API_KEY"),
@@ -113,29 +97,23 @@ llm = LLM(
     timeout=60,
 )
 
-# ─────────────────────────────────────────────
-# HERRAMIENTAS
-# Ahora reciben la queue como parámetro de clase
-# para poder emitir eventos sin depender de global
-# ─────────────────────────────────────────────
+
 def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
-    """Crea instancias de herramientas vinculadas a la queue de esta sesión."""
 
     def emit(msg: str):
-        """Envía un evento a la queue de forma thread-safe."""
         asyncio.run_coroutine_threadsafe(
             q.put({"tipo": "agente", "mensaje": msg}), loop
         )
 
     class LectorTool(BaseTool):
         name: str = "Lector"
-        description: str = "Lee el contenido de un archivo. Úsalo para leer 'context.md', 'memory.md' o archivos generados como 'app_generada/main.py', 'app_generada/index.html', 'app_generada/style.css'"
+        description: str = "Lee el contenido de un archivo. Usalo para leer 'context.md', 'memory.md' o archivos generados como 'app_generada/main.py', 'app_generada/index.html', 'app_generada/style.css'"
 
         def _run(self, filename: str) -> str:
             try:
                 clean = os.path.basename(filename)
                 if not os.path.exists(clean):
-                    return f"'{clean}' no existe, Asume que es un proyecto nuevo."
+                    return f"'{clean}' no existe. Asume que es un proyecto nuevo."
                 with open(clean, "r", encoding="utf-8") as f:
                     return f.read()
             except Exception as e:
@@ -143,49 +121,49 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
 
     class GuardarMainPy(BaseTool):
         name: str = "Guardar_MainPy"
-        description: str = "Guarda main.py en app_generada/. Parámetro: content (código Python)."
+        description: str = "Guarda main.py en app_generada/. Parametro: content (codigo Python completo)."
 
         def _run(self, content: str) -> str:
             try:
                 os.makedirs("app_generada", exist_ok=True)
                 with open("app_generada/main.py", "w", encoding="utf-8") as f:
                     f.write(content)
-                emit("✅ main.py guardado")
-                return "OK: main.py guardado."
+                emit("main.py guardado")
+                return "OK: main.py guardado en app_generada/main.py."
             except Exception as e:
                 return f"Error: {str(e)}"
 
     class GuardarIndexHtml(BaseTool):
         name: str = "Guardar_IndexHtml"
-        description: str = "Guarda index.html en app_generada/. Parámetro: content (HTML)."
+        description: str = "Guarda index.html en app_generada/. Parametro: content (HTML completo)."
 
         def _run(self, content: str) -> str:
             try:
                 os.makedirs("app_generada", exist_ok=True)
                 with open("app_generada/index.html", "w", encoding="utf-8") as f:
                     f.write(content)
-                emit("✅ index.html guardado")
-                return "OK: index.html guardado."
+                emit("index.html guardado")
+                return "OK: index.html guardado en app_generada/index.html."
             except Exception as e:
                 return f"Error: {str(e)}"
 
     class GuardarStyleCss(BaseTool):
         name: str = "Guardar_StyleCss"
-        description: str = "Guarda style.css en app_generada/. Parámetro: content (CSS)."
+        description: str = "Guarda style.css en app_generada/. Parametro: content (CSS completo)."
 
         def _run(self, content: str) -> str:
             try:
                 os.makedirs("app_generada", exist_ok=True)
                 with open("app_generada/style.css", "w", encoding="utf-8") as f:
                     f.write(content)
-                emit("✅ style.css guardado")
-                return "OK: style.css guardado."
+                emit("style.css guardado")
+                return "OK: style.css guardado en app_generada/style.css."
             except Exception as e:
                 return f"Error: {str(e)}"
 
     class GuardarMemory(BaseTool):
         name: str = "Guardar_Memory"
-        description: str = "Agrega una entrada al memory.md sin borrar el historial. Parámetro: content."
+        description: str = "Agrega una entrada al memory.md sin borrar el historial. Parametro: content."
 
         def _run(self, content: str) -> str:
             try:
@@ -194,10 +172,10 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
                     with open("memory.md", "r", encoding="utf-8") as f:
                         historial = f.read()
                 fecha = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                nueva_entrada = f"\n\n## Iteración {fecha}\n{content}"
+                nueva_entrada = f"\n\n## Iteracion {fecha}\n{content}"
                 with open("memory.md", "w", encoding="utf-8") as f:
                     f.write(historial + nueva_entrada)
-                emit("✅ memory.md actualizado")
+                emit("memory.md actualizado")
                 return "OK: memory.md actualizado."
             except Exception as e:
                 return f"Error: {str(e)}"
@@ -205,99 +183,169 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
     return LectorTool(), GuardarMainPy(), GuardarIndexHtml(), GuardarStyleCss(), GuardarMemory()
 
 
-# ─────────────────────────────────────────────
-# CREW RUNNER
-# Ahora recibe la queue y el event loop
-# ─────────────────────────────────────────────
 def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
-    """Corre en un thread. Usa asyncio.run_coroutine_threadsafe para enviar eventos."""
 
     def emit(tipo: str, msg: str):
         asyncio.run_coroutine_threadsafe(
             q.put({"tipo": tipo, "mensaje": msg}), loop
         )
 
-    # 1. CREAMOS EL CALLBACK PARA CAPTURAR LOS PENSAMIENTOS
     def creador_callback(nombre_agente):
         def callback(paso):
             try:
-                # CrewAI devuelve una lista de acciones en el paso
                 if isinstance(paso, list) and len(paso) > 0:
                     accion = paso[0][0] if isinstance(paso[0], tuple) else paso[0]
                     texto = getattr(accion, 'log', '') or getattr(accion, 'text', '')
                     if texto:
-                        # Limpiamos un poco el texto y lo enviamos al frontend
                         resumen = texto.strip().split('\n')[0][:150]
-                        emit("agente", f"🤖 [{nombre_agente}] {resumen}...")
-            except Exception as e:
-                pass # Ignoramos errores de formato del callback
+                        emit("agente", f"[{nombre_agente}] {resumen}...")
+            except Exception:
+                pass
         return callback
 
     try:
-        emit("inicio", "🚀 Iniciando generación...")
+        emit("inicio", "Iniciando generacion...")
 
         lector, guardar_main, guardar_html, guardar_css, guardar_memory = make_tools(q, loop)
 
-        # 2. AGREGAMOS EL CALLBACK A CADA AGENTE
+        # ─────────────────────────────────────────────
+        # AGENTES
+        # ─────────────────────────────────────────────
         planificador = Agent(
-            role="Planificador",
-            goal="Leer context.md y memory.md y producir un plan breve.",
-            backstory="Analizas requerimientos y defines qué construir en pocas líneas.",
-            llm=llm, tools=[lector], verbose=False, max_iter=3,
-            step_callback=creador_callback("Planificador") # <--- AQUI
+            role="Planificador Tecnico",
+            goal=(
+                "Leer context.md y memory.md completos antes de cualquier decision. "
+                "Producir un plan tecnico preciso que los demas agentes puedan seguir sin ambiguedad."
+            ),
+            backstory=(
+                "Eres el arquitecto del proyecto. Tu primera accion SIEMPRE es leer context.md y memory.md "
+                "usando la herramienta Lector, para conocer las reglas y el historial de errores anteriores. "
+                "Con base en eso defines si se necesita backend o no, que debe mostrar el HTML y que estilos aplicar. "
+                "Nunca inventas rutas ni estructuras: todo lo que defines viene de las reglas del context.md."
+            ),
+            llm=llm,
+            tools=[lector],
+            verbose=False,
+            max_iter=4,
+            step_callback=creador_callback("Planificador"),
         )
+
         dev_backend = Agent(
-            role="Backend Developer",
-            goal="Generar y guardar main.py con FastAPI.",
-            backstory="Escribes código Python limpio y funcional.",
-            llm=llm, tools=[guardar_main], verbose=False, max_iter=3,
-            step_callback=creador_callback("Backend") # <--- AQUI
+            role="Backend Developer Python/FastAPI",
+            goal=(
+                "Generar main.py correcto y guardarlo usando Guardar_MainPy. "
+                "El archivo debe funcionar sin modificaciones adicionales."
+            ),
+            backstory=(
+                "Eres un experto en FastAPI. Conoces de memoria la estructura obligatoria: "
+                "BASE_DIR = os.path.dirname(os.path.abspath(__file__)), "
+                "app.mount('/static', StaticFiles(directory=BASE_DIR), name='static'), "
+                "endpoint raiz que devuelve FileResponse(os.path.join(BASE_DIR, 'index.html')), "
+                "y uvicorn.run('main:app', host='0.0.0.0', port=8001, reload=True) en el bloque __main__. "
+                "Si el plan dice que NO necesita backend, igual generas el main.py minimo con solo el endpoint raiz. "
+                "Nunca omites los imports obligatorios ni cambias los nombres de los archivos."
+            ),
+            llm=llm,
+            tools=[guardar_main],
+            verbose=False,
+            max_iter=3,
+            step_callback=creador_callback("Backend"),
         )
+
         dev_frontend = Agent(
-            role="Frontend Developer",
-            goal="Generar y guardar index.html.",
-            backstory="Escribes HTML5 semántico y funcional.",
-            llm=llm, tools=[guardar_html], verbose=False, max_iter=3,
-            step_callback=creador_callback("Frontend") # <--- AQUI
+            role="Frontend Developer HTML5",
+            goal=(
+                "Generar index.html correcto y guardarlo usando Guardar_IndexHtml. "
+                "El HTML debe ser funcional, semantico y seguir TODAS las reglas del plan."
+            ),
+            backstory=(
+                "Eres especialista en HTML5 semantico. Tienes UNA regla que jamas rompes: "
+                "el enlace al CSS SIEMPRE es exactamente: <link rel='stylesheet' href='/static/style.css'> "
+                "La barra inicial y la carpeta /static/ son OBLIGATORIAS. "
+                "PROHIBIDO escribir: href='style.css' | href='css/style.css' | href='./style.css'. "
+                "La ruta UNICA y CORRECTA es: /static/style.css — sin excepciones. "
+                "Si el plan define endpoints de API, usas fetch() con URL absoluta al puerto 8001. "
+                "Si el plan dice que es estatico, pones los datos directamente en el HTML sin fetch(). "
+                "El body SIEMPRE comienza con un <h1> con el titulo descriptivo del tema de la app."
+            ),
+            llm=llm,
+            tools=[guardar_html],
+            verbose=False,
+            max_iter=3,
+            step_callback=creador_callback("Frontend"),
         )
+
         dev_css = Agent(
             role="CSS Developer",
-            goal="Generar y guardar style.css.",
-            backstory="Escribes CSS limpio y moderno.",
-            llm=llm, tools=[guardar_css], verbose=False, max_iter=3,
-            step_callback=creador_callback("CSS") # <--- AQUI
-        )
-        secretario = Agent(
-            role="Secretario",
-            goal="Actualizar memory.md registrando únicamente errores técnicos o el éxito de la iteración en una sola línea",
-            backstory="Odias la redundancia, solo escribe lo esencial de la iteracion.",
-            llm=llm, tools=[guardar_memory], verbose=False, max_iter=3,
-            step_callback=creador_callback("Secretario") # <--- AQUI
+            goal=(
+                "Generar style.css correcto y guardarlo usando Guardar_StyleCss. "
+                "El CSS debe implementar dark mode y seguir los estilos del plan."
+            ),
+            backstory=(
+                "Eres experto en CSS3. Siempre usas dark mode como base: fondo #1a1a2e, texto blanco. "
+                "Tu archivo se llama exactamente style.css y el HTML lo carga desde /static/style.css. "
+                "Nunca usas estilos inline en el HTML — todo va en este archivo. "
+                "Mantienes el CSS limpio, sin redundancias y en menos de 60 lineas salvo que el plan exija mas."
+            ),
+            llm=llm,
+            tools=[guardar_css],
+            verbose=False,
+            max_iter=3,
+            step_callback=creador_callback("CSS"),
         )
 
+        secretario = Agent(
+            role="Secretario de Memoria",
+            goal="Llamar a Guardar_Memory una sola vez con exactamente 2 lineas. Sin texto adicional.",
+            backstory=(
+                "Eres una funcion de escritura, no un redactor creativo. "
+                "Tu unica tarea es llamar a Guardar_Memory con exactamente 2 lineas siguiendo la plantilla. "
+                "No escribes 'que se podria mejorar', no elaboras. Solo las 2 lineas de la plantilla"
+            ),
+            llm=llm,
+            tools=[guardar_memory],
+            verbose=False,
+            max_iter=2,
+            step_callback=creador_callback("Secretario"),
+        )
+
+        # ─────────────────────────────────────────────
+        # TAREAS
+        # ─────────────────────────────────────────────
         tarea_plan = Task(
             description=f"""
-Lee 'context.md' y 'memory.md' con Lector.
-El usuario quiere: {descripcion}
+PASO 1: Usa Lector para leer 'context.md'. Lee el contenido completo.
+PASO 2: Usa Lector para leer 'memory.md'. Lee el contenido completo, especialmente las secciones CORRECCION REQUERIDA y Feedback.
+PASO 3: Con base en ambos archivos y el requerimiento del usuario, produce el plan.
 
-Decide si necesita backend (lógica/datos) o solo HTML+CSS (contenido estático).
-Produce un plan de máximo 8 líneas con:
-- ¿Necesita backend? Sí/No
-- Qué mostrar en el HTML
-- Qué endpoints si aplica
-- Qué estilos CSS
+Requerimiento del usuario: {descripcion}
+
+El plan debe responder exactamente estas 5 preguntas en orden:
+1. Backend: Si/No — Solo Si si hay logica dinamica (calculos, datos en tiempo real, BD)
+2. Contenido HTML: lista de elementos concretos a mostrar
+3. Endpoints: rutas exactas /api/... con su metodo HTTP, o "No aplica"
+4. Estilos CSS: colores, fuentes, layout especifico
+5. Correcciones de memory.md: lista las pendientes o escribe "Sin correcciones pendientes"
 """,
-            expected_output="Plan técnico en 8 líneas.",
+            expected_output=(
+                "Plan tecnico numerado en exactamente 5 puntos. "
+                "Punto 1: 'Backend: Si' o 'Backend: No'. "
+                "Punto 2: lista de elementos del HTML. "
+                "Punto 3: lista de endpoints con metodo y ruta, o 'No aplica'. "
+                "Punto 4: descripcion de estilos con valores concretos. "
+                "Punto 5: correcciones pendientes de memory.md o 'Sin correcciones pendientes'."
+            ),
             agent=planificador,
         )
 
         tarea_backend = Task(
             description="""
-Según el plan:
-- Si NO necesita backend: guarda main.py mínimo que solo sirve index.html
-- Si SÍ necesita backend: genera main.py con los endpoints del plan
+Lee el plan del Planificador en el contexto de esta tarea.
 
-Usa SIEMPRE estos imports exactos:
+REGLA ABSOLUTA: Guarda el archivo con Guardar_MainPy. La ruta resultante es app_generada/main.py.
+
+Si el plan dice "Backend: No", genera EXACTAMENTE este main.py minimo:
+
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -313,56 +361,124 @@ def root():
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8001, reload=True)
+
+Si el plan dice "Backend: Si", genera ese mismo esqueleto MAS los endpoints del plan.
+Los endpoints de API empiezan con /api/ y devuelven diccionarios Python directamente.
 """,
-            expected_output="Confirmación de que main.py fue guardado.",
+            expected_output=(
+                "Confirmacion exacta: 'OK: main.py guardado en app_generada/main.py.' "
+                "El archivo contiene: imports (FastAPI, FileResponse, StaticFiles, uvicorn, os), "
+                "BASE_DIR con os.path.dirname(os.path.abspath(__file__)), "
+                "app.mount('/static', StaticFiles(directory=BASE_DIR), name='static'), "
+                "endpoint @app.get('/') que devuelve FileResponse(os.path.join(BASE_DIR, 'index.html')), "
+                "y uvicorn.run('main:app', host='0.0.0.0', port=8001, reload=True) en __main__."
+            ),
             agent=dev_backend,
             context=[tarea_plan],
         )
 
         tarea_frontend = Task(
             description="""
-Según el plan, guarda index.html con:
-- <link rel="stylesheet" href="style.css">
-- El contenido que definió el planificador
-- Si hay endpoints: fetch() a esos endpoints
-- Si hay imágenes: usa URLs reales según las reglas del context.md
-- Menos de 40 líneas
+Lee el plan del Planificador en el contexto de esta tarea.
+
+Genera index.html usando Guardar_IndexHtml. 
+USA EXACTAMENTE esta estructura de <head>, sin modificar la ruta del CSS:
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>[TITULO DEL TEMA]</h1>
+    [CONTENIDO SEGUN EL PLAN]
+</body>
+</html>
+
+REGLA: href="/static/style.css" es una cadena fija. No la alteres.
+- Plan "Backend: No" → datos directamente en el HTML, sin fetch().
+- Plan "Backend: Si" → fetch('http://localhost:8001/api/ruta') extrayendo data.propiedad.
+- Imagenes: URLs reales de Wikimedia Commons. Nunca picsum.photos ni example.com.
 """,
-            expected_output="Confirmación de que index.html fue guardado.",
+            expected_output=(
+                "Confirmacion exacta: 'OK: index.html guardado en app_generada/index.html.' "
+                "El <head> contiene exactamente: <link rel='stylesheet' href='/static/style.css'>"
+                "<h1> como primer elemento del body con titulo descriptivo "
+            ),
             agent=dev_frontend,
             context=[tarea_plan],
         )
 
         tarea_css = Task(
             description="""
-Según el plan, guarda style.css con:
-- body: fondo #1a1a2e, color blanco, sans-serif, centrado
-- button: fondo #6c63ff, sin borde, padding 10px 20px, cursor pointer
-- button:hover: fondo #574fd6
-- Menos de 30 líneas
+Lee el plan del Planificador en el contexto de esta tarea.
+
+Genera style.css con las siguientes reglas base OBLIGATORIAS mas los estilos especificos del plan:
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: #1a1a2e;
+    color: #ffffff;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+h1 { margin-bottom: 1.5rem; font-size: 2rem; }
+
+button {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover { background: #574fd6; }
+
+Anade los estilos adicionales que el plan especifique. Maximo 60 lineas total.
+Guarda el archivo con Guardar_StyleCss.
 """,
-            expected_output="Confirmación de que style.css fue guardado.",
+            expected_output=(
+                "Confirmacion exacta: 'OK: style.css guardado en app_generada/style.css.' "
+                "El archivo contiene: reset de box-sizing/margin/padding, "
+                "body con background #1a1a2e, color #ffffff, flex centrado, "
+                "h1 con margin-bottom, button con #6c63ff, button:hover con #574fd6, "
+                "y estilos adicionales del plan si aplica."
+            ),
             agent=dev_css,
             context=[tarea_plan],
         )
 
         tarea_memoria = Task(
-            description="""
-Analiza el resultado de la generación actual.
+            description=f"""
+Llama a Guardar_Memory UNA SOLA VEZ con este texto exacto, sustituyendo los corchetes:
 
-REGLA ABSOLUTA: PROHIBIDO listar "Archivos generados", "Endpoints creados", "Recursos" o hacer resúmenes. Si lo haces, la misión fracasa.
+Estado actual: [que hace la app en 10 palabras]
+Endpoints o elementos clave: [endpoints /api/... o elementos HTML principales]
 
-Elige UNA de estas dos opciones y usa Guardar_Memory enviando EXACTAMENTE ese texto:
-
-Opción A (Si hubo bugs o problemas técnicos reportados):
-"Error detectado: [escribe el error técnico en 20 palabras]"
-
-Opción B (Si todo salió bien):
-"Iteración exitosa. App: [Tema de la app en máximo 10 palabras]"
+STOP. No escribas nada mas. No hay seccion de mejoras. No hay observaciones.
+El usuario pidio: {descripcion}
 """,
-            expected_output="Una sola línea enviada a la herramienta Guardar_Memory.",
+            expected_output=(
+                "Confirmacion de Guardar_Memory exitoso. "
+                "Exactamente 2 lineas guardadas. "
+                "linea 1 con 'Estado actual:' y "
+                "linea 2 empieza con 'Endpoints o elementos clave:'."
+                "Sin ninguna linea adicional."
+            ),
             agent=secretario,
-            context=[tarea_backend, tarea_frontend, tarea_css],
+            context=[tarea_plan],
         )
 
         crew = Crew(
@@ -373,27 +489,22 @@ Opción B (Si todo salió bien):
         )
 
         crew.kickoff()
-        emit("finalizado", "🎉 ¡App generada en app_generada/")
+        emit("finalizado", "App generada en app_generada/")
 
     except Exception as e:
-        emit("error", f"❌ Error: {str(e)}")
+        emit("error", f"Error: {str(e)}")
 
 
-# ─────────────────────────────────────────────
-# MODELOS
-# ─────────────────────────────────────────────
 class AppRequest(BaseModel):
     descripcion: str
-    sesion_id: str          # El frontend genera un UUID y lo manda aquí
+    sesion_id: str
 
 class FeedbackRequest(BaseModel):
     tipo: str
+    categoria: str = "General"
     descripcion: str
 
 
-# ─────────────────────────────────────────────
-# ENDPOINTS
-# ─────────────────────────────────────────────
 @app.get("/")
 def root():
     return FileResponse(os.path.join(BASE_DIR, "index.html"))
@@ -401,65 +512,38 @@ def root():
 
 @app.post("/generar")
 async def generar(req: AppRequest):
-    """
-    1. Crea una asyncio.Queue para esta sesión.
-    2. Lanza lanzar_crew en un thread del executor (no bloquea el event loop).
-    3. Guarda la queue en _sesiones para que /progreso la consuma.
-    """
     loop = asyncio.get_running_loop()
     q: asyncio.Queue = asyncio.Queue()
     _sesiones[req.sesion_id] = q
-
-    # run_in_executor: el thread pool de asyncio — no bloquea el event loop
-    loop.run_in_executor(
-        None,
-        lanzar_crew,
-        req.descripcion,
-        q,
-        loop,
-    )
+    loop.run_in_executor(None, lanzar_crew, req.descripcion, q, loop)
     return {"ok": True}
 
 
 @app.get("/progreso/{sesion_id}")
 async def progreso(sesion_id: str):
-    """
-    SSE por sesión. Mantiene la conexión viva enviando pings si los agentes tardan mucho.
-    """
     async def stream():
-        # Espera hasta 30 s a que la sesión exista
         for _ in range(30):
             if sesion_id in _sesiones:
                 break
             yield 'data: {"tipo":"ping"}\n\n'
             await asyncio.sleep(1)
         else:
-            yield 'data: {"tipo":"error","mensaje":"Sesión no encontrada"}\n\n'
+            yield 'data: {"tipo":"error","mensaje":"Sesion no encontrada"}\n\n'
             return
 
         q = _sesiones[sesion_id]
         try:
             while True:
                 try:
-                    # Bajamos el timeout del queue a 3 segundos. 
-                    # Si no hay mensajes nuevos en 3s, lanzará TimeoutError.
                     evento = await asyncio.wait_for(q.get(), timeout=3.0)
                     data = json.dumps(evento, ensure_ascii=False)
                     yield f"data: {data}\n\n"
-                    
                     if evento["tipo"] in ["finalizado", "error"]:
-                        # IMPORTANTE: Pausa de medio segundo antes de romper el bucle
-                        # para asegurar que Uvicorn envíe este último chunk al navegador.
                         await asyncio.sleep(0.5)
                         break
-                
                 except asyncio.TimeoutError:
-                    # El LLM está pensando. Enviamos un ping para que 
-                    # el navegador no cierre la conexión por inactividad.
                     yield 'data: {"tipo":"ping"}\n\n'
-                    
         finally:
-            # Limpia la sesión al terminar
             _sesiones.pop(sesion_id, None)
 
     return StreamingResponse(
@@ -472,6 +556,7 @@ async def progreso(sesion_id: str):
         },
     )
 
+
 @app.post("/feedback")
 def recibir_feedback(req: FeedbackRequest):
     try:
@@ -479,18 +564,18 @@ def recibir_feedback(req: FeedbackRequest):
         if os.path.exists("memory.md"):
             with open("memory.md", "r", encoding="utf-8") as f:
                 historial = f.read()
-                
         fecha = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-        
-        # Guardamos la instrucción como un requerimiento nuevo en la memoria
         if req.tipo == "mejora":
-            entrada = f"\n\n## Sugerencia del usuario ({fecha})\n- Petición de mejora: {req.descripcion}\n- Acción: El usuario solicitó aplicar estos cambios a la base de código actual."
+            entrada = (
+                f"\n\n## CORRECCION REQUERIDA ({fecha})\n"
+                f"- Archivo sospechoso/Categoria: {req.categoria}\n"
+                f"- Instruccion: {req.descripcion}\n"
+                f"- Accion: Usa LectorTool para leer el codigo actual y aplicar esta correccion."
+            )
         else:
-            entrada = f"\n\n## Feedback ({fecha})\n- App: {req.descripcion}\n- Resultado: 👍 Aprobada"
-            
+            entrada = f"\n\n## Feedback ({fecha})\n- App: {req.descripcion}\n"
         with open("memory.md", "w", encoding="utf-8") as f:
             f.write(historial + entrada)
-            
         return {"ok": True}
     except Exception as e:
         return {"ok": False, "error": str(e)}

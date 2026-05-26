@@ -363,7 +363,7 @@ Endpoints o elementos clave: GET / sirve HTML estático con nombre, edad y goles
         """,
             expected_output="2 líneas exactas con el formato Estado actual / Endpoints o elementos clave.",
             agent=secretario,
-            context=[tarea_backend, tarea_frontend, tarea_css],
+            context=[tarea_plan],
         )
 
         crew = Crew(
