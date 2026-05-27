@@ -51,7 +51,7 @@ app.add_middleware(
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) #Ruta actual absoluta sin el archivo final, para usarlo como base de los archivos estáticos
 app.mount("/static", StaticFiles(directory=BASE_DIR), name="static") # Enruta para que las solicitudes a /static/ se sirvan desde el directorio BASE_DIR, donde los agentes guardarán los archivos generados
 
-_sesiones: dict[str, asyncio.Queue] = {} #Clarificar
+_sesiones: dict[str, asyncio.Queue] = {} # Diccionario global para manejar las sesiones activas. La clave es el sesion_id y el valor es una cola de asyncio para enviar mensajes de progreso desde los agentes al endpoint de progreso.
 
 CONTEXT_BASE = """# Reglas del Sistema
 
@@ -99,25 +99,26 @@ llm = LLM(
     timeout=60,
 )
 
-#pendiente
+#recibe dos parametros: una cola de asyncio para enviar mensajes de progreso y el loop de asyncio para ejecutar las tareas asincronas de la cola.
+#Devuelve las herramientas personalizadas que los agentes van a usar, cada una con acceso a la funcion emit para enviar mensajes de progreso a traves de la cola.
 def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop): 
 
-    def emit(msg: str):
+    def emit(msg: str): #Funcion interna para enviar mensajes de progreso a traves de la cola. Recibe un mensaje y lo pone en la cola con el tipo "agente". Se ejecuta de forma thread-safe usando run_coroutine_threadsafe, ya que los agentes pueden estar corriendo en hilos separados.
         asyncio.run_coroutine_threadsafe(
             q.put({"tipo": "agente", "mensaje": msg}), loop
         )
 
-    class LectorTool(BaseTool):
+    class LectorTool(BaseTool): # BaseTool es la clase base para crear herramientas personalizadas en crewAI. Cada herramienta debe implementar el metodo _run, que es lo que se ejecuta cuando el agente llama a esa herramienta. En este caso, LectorTool permite leer el contenido de un archivo y enviar mensajes de progreso usando emit.
         name: str = "Lector"
         description: str = "Lee el contenido de un archivo. Usalo para leer 'context.md', 'memory.md' o archivos generados como 'app_generada/main.py', 'app_generada/index.html', 'app_generada/style.css'"
 
         def _run(self, filename: str) -> str:
             try:
-                clean = os.path.basename(filename)
+                clean = os.path.basename(filename) #Nombre del archivo sin rutas, para evitar que los agentes intenten acceder a archivos fuera del directorio permitido. Esto asegura que solo puedan leer archivos específicos como context.md, memory.md o los archivos generados en app_generada/.
                 if not os.path.exists(clean):
                     return f"'{clean}' no existe. Asume que es un proyecto nuevo."
                 with open(clean, "r", encoding="utf-8") as f:
-                    return f.read()
+                    return f.read() #Lee el contenido del archivo y lo devuelve como resultado de la herramienta. Si el archivo no existe, devuelve un mensaje indicando que es un proyecto nuevo.
             except Exception as e:
                 return f"Error: {str(e)}"
 
@@ -127,8 +128,8 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
 
         def _run(self, content: str) -> str:
             try:
-                os.makedirs("app_generada", exist_ok=True)
-                with open("app_generada/main.py", "w", encoding="utf-8") as f:
+                os.makedirs("app_generada", exist_ok=True) #Crea el directorio app_generada si no existe.
+                with open("app_generada/main.py", "w", encoding="utf-8") as f: # abre o crea el archivo app_generada/main.py y escribe el contenido proporcionado por el agente.
                     f.write(content)
                 emit("main.py guardado")
                 return "OK: main.py guardado en app_generada/main.py."
@@ -185,7 +186,7 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
     return LectorTool(), GuardarMainPy(), GuardarIndexHtml(), GuardarStyleCss(), GuardarMemory()
 
 
-def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
+def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventLoop): #Parametros: descripcion (requerimiento), q (cola de mensajes), loop (bucle de eventos)
 
     def emit(tipo: str, msg: str):
         asyncio.run_coroutine_threadsafe(
@@ -193,15 +194,14 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
         )
 
     def creador_callback(nombre_agente):
-        #pendiente
-        def callback(paso):
+        def callback(paso): # Paso es un objeto que representa cada paso que da el agente. Puede ser una string con la descripcion del paso, o una lista de acciones si el agente esta ejecutando herramientas. Si es una lista de acciones, se extrae la primera accion y se intenta obtener su texto para mostrarlo como mensaje de progreso.
             try:
-                if isinstance(paso, list) and len(paso) > 0:
-                    accion = paso[0][0] if isinstance(paso[0], tuple) else paso[0]
-                    texto = getattr(accion, 'log', '') or getattr(accion, 'text', '')
+                if isinstance(paso, list) and len(paso) > 0: # Si es lista y si contiene algo
+                    accion = paso[0][0] if isinstance(paso[0], tuple) else paso[0] # Si el primer elemento de la lista es una tupla, se asume que la accion es el primer elemento de la tupla. Si no es una tupla, se asume que la accion es el primer elemento de la lista.
+                    texto = getattr(accion, 'log', '') or getattr(accion, 'text', '') # Se intenta obtener el texto de la accion, primero buscando un atributo 'log' y si no existe, buscando un atributo 'text'. Si ninguno existe, se asigna una cadena vacía.
                     if texto:
                         resumen = texto.strip().split('\n')[0][:150]
-                        emit("agente", f"[{nombre_agente}] {resumen}...")
+                        emit("agente", f"[{nombre_agente}] {resumen}...") #[Backend Developer] Necesito crear los endpoints de la API...
             except Exception:
                 pass
         return callback
@@ -209,7 +209,7 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
     try:
         emit("inicio", "Iniciando generacion...")
 
-        lector, guardar_main, guardar_html, guardar_css, guardar_memory = make_tools(q, loop)
+        lector, guardar_main, guardar_html, guardar_css, guardar_memory = make_tools(q, loop) # Crear las herramientas personalizadas con acceso a la funcion emit para enviar mensajes de progreso. Estas herramientas se pasan a los agentes para que puedan usarlas durante su proceso de toma de decisiones y ejecucion de tareas.
 
         planificador = Agent(
             role="Planificador Tecnico",
@@ -480,7 +480,7 @@ El usuario pidio: {descripcion}
             agent=secretario,
             context=[tarea_plan],
         )
-
+        #Definir la tripulacion de agentes, las tareas a ejecutar, el proceso secuencial y el callback para mostrar el progreso. Luego iniciar la tripulacion con kickoff() y emitir un mensaje de finalizacion al terminar.
         crew = Crew(
             agents=[planificador, dev_backend, dev_frontend, dev_css, secretario],
             tasks=[tarea_plan, tarea_backend, tarea_frontend, tarea_css, tarea_memoria],
@@ -495,11 +495,11 @@ El usuario pidio: {descripcion}
         emit("error", f"Error: {str(e)}")
 
 
-class AppRequest(BaseModel):
+class AppRequest(BaseModel): #Se asegura que la solicitud de generación tenga una estructura definida, con una descripcion del requerimiento y un ID de sesión para enviar el progreso.
     descripcion: str
     sesion_id: str
 
-class FeedbackRequest(BaseModel):
+class FeedbackRequest(BaseModel): #Se asegura que la solicitud de feedback tenga una estructura definida, con un tipo, categoría y descripción.
     tipo: str
     categoria: str = "General"
     descripcion: str
@@ -512,10 +512,10 @@ def root():
 
 @app.post("/generar")
 async def generar(req: AppRequest):
-    loop = asyncio.get_running_loop()
-    q: asyncio.Queue = asyncio.Queue()
+    loop = asyncio.get_running_loop() # Obtener el bucle de eventos actual para usarlo en la función lanzar_crew, que se ejecutará en un hilo separado. Esto permite que los agentes puedan enviar mensajes de progreso a través de la cola de asyncio incluso estando en hilos diferentes.
+    q: asyncio.Queue = asyncio.Queue() # Crear una cola de asyncio para enviar mensajes de progreso desde los agentes al endpoint de progreso. Cada mensaje es un diccionario con un tipo (inicio, agente, finalizado, error) y un mensaje de texto.
     _sesiones[req.sesion_id] = q
-    loop.run_in_executor(None, lanzar_crew, req.descripcion, q, loop)
+    loop.run_in_executor(None, lanzar_crew, req.descripcion, q, loop) # Ejecutar la función lanzar_crew en un hilo separado para no bloquear el bucle de eventos principal. Pasar la descripción del requerimiento, la cola de mensajes y el bucle de eventos como argumentos. Esto permite que la generación de la app se realice de forma asíncrona mientras el endpoint puede seguir respondiendo a otras solicitudes.
     return {"ok": True}
 
 

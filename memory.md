@@ -107,3 +107,9 @@ Se creó una app con un formulario de 5 preguntas de verdadero o falso sobre age
 
 ## Iteración 2026-05-26 20:26
 Se creó una aplicación simple con FastAPI que muestra 'Hola mundo'. Se generaron los archivos main.py e index.html. No se crearon endpoints adicionales. No se utilizaron recursos externos. Se podría mejorar la aplicación agregando más funcionalidades y estilos.
+
+## Iteración 2026-05-27 16:01
+Se creó una app que muestra 'Hola mundo'. Se generaron los archivos main.py, index.html y style.css. Se creó un endpoint en /. Se utilizaron recursos estáticos como style.css. Para mejorar, se podría agregar más funcionalidad a la app.
+
+## Iteración 2026-05-27 16:10
+Se agregó un formulario de 3 preguntas de verdadero y falso con respuestas sobre agentes IA. Se generó un archivo index.html y un archivo style.css. No se crearon endpoints. No se utilizaron recursos externos. Se podría mejorar la interactividad del formulario y la precisión de las respuestas.
