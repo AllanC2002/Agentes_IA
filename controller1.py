@@ -5,6 +5,7 @@ import datetime
 import threading
 import asyncio
 import litellm
+import logging
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
@@ -14,7 +15,6 @@ from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process, LLM
 from crewai.tools import BaseTool
 
-import logging
 
 logging.basicConfig(
     level=logging.INFO,
@@ -28,13 +28,15 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 
-litellm.num_retries = 5
-litellm.retry_after = 15
+litellm.num_retries = 5 # Litellm pertence a crewAI y enruta las peticiones al LLM. Limitar a 5 reintentos para evitar loops infinitos
+litellm.retry_after = 15 # Tiempo de espera entre reintentos, en segundos. Para dar mas tiempo al LLM a recuperarse y evitar bloqueos temporales.
 
-original_completion = litellm.completion
+original_completion = litellm.completion # litellm.completion es la funcion que hace las llamadas al LLM. La vamos a envolver para agregarle una pausa de 12 segundos antes de cada llamada
+
 def completion_con_pausa(*args, **kwargs):
     time.sleep(12)
     return original_completion(*args, **kwargs)
+
 litellm.completion = completion_con_pausa
 
 app = FastAPI()
@@ -45,10 +47,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
+# Montar el directorio actual como /static para que los agentes puedan guardar los archivos generados y el frontend pueda acceder a ellos
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) #Ruta actual absoluta sin el archivo final, para usarlo como base de los archivos estáticos
+app.mount("/static", StaticFiles(directory=BASE_DIR), name="static") # Enruta para que las solicitudes a /static/ se sirvan desde el directorio BASE_DIR, donde los agentes guardarán los archivos generados
 
-_sesiones: dict[str, asyncio.Queue] = {}
+_sesiones: dict[str, asyncio.Queue] = {} #Clarificar
 
 CONTEXT_BASE = """# Reglas del Sistema
 
@@ -71,7 +74,6 @@ app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
 ## Reglas de HTML
 - Siempre: <link rel="stylesheet" href="/static/style.css">
 - fetch() debe apuntar a endpoints reales definidos en el plan
-- Sin librerías externas salvo Google Fonts
 
 ## Reglas de imágenes
 - Nunca uses picsum.photos (imágenes aleatorias sin contexto)
@@ -97,8 +99,8 @@ llm = LLM(
     timeout=60,
 )
 
-
-def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
+#pendiente
+def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop): 
 
     def emit(msg: str):
         asyncio.run_coroutine_threadsafe(
@@ -191,6 +193,7 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
         )
 
     def creador_callback(nombre_agente):
+        #pendiente
         def callback(paso):
             try:
                 if isinstance(paso, list) and len(paso) > 0:
@@ -208,9 +211,6 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
 
         lector, guardar_main, guardar_html, guardar_css, guardar_memory = make_tools(q, loop)
 
-        # ─────────────────────────────────────────────
-        # AGENTES
-        # ─────────────────────────────────────────────
         planificador = Agent(
             role="Planificador Tecnico",
             goal=(
@@ -335,7 +335,7 @@ El plan debe responder exactamente estas 5 preguntas en orden:
                 "Punto 4: descripcion de estilos con valores concretos. "
                 "Punto 5: correcciones pendientes de memory.md o 'Sin correcciones pendientes'."
             ),
-            agent=planificador,
+            agent=planificador
         )
 
         tarea_backend = Task(
