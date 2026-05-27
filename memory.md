@@ -104,3 +104,6 @@ Se creó una app con un formulario de 5 preguntas de verdadero o falso sobre age
 
 ## Feedback 2026-05-26 17:16
 - App: en la app estuviste muy bien con las preguntas pero no habia un boton de enviar o que muestre algun resultado
+
+## Iteración 2026-05-26 20:26
+Se creó una aplicación simple con FastAPI que muestra 'Hola mundo'. Se generaron los archivos main.py e index.html. No se crearon endpoints adicionales. No se utilizaron recursos externos. Se podría mejorar la aplicación agregando más funcionalidades y estilos.

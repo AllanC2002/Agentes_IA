@@ -33,7 +33,7 @@ litellm.retry_after = 15
 
 original_completion = litellm.completion
 def completion_con_pausa(*args, **kwargs):
-    time.sleep(8)
+    time.sleep(12)
     return original_completion(*args, **kwargs)
 litellm.completion = completion_con_pausa
 
