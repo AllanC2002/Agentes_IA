@@ -113,3 +113,93 @@ Se creó una app que muestra 'Hola mundo'. Se generaron los archivos main.py, in
 
 ## Iteración 2026-05-27 16:10
 Se agregó un formulario de 3 preguntas de verdadero y falso con respuestas sobre agentes IA. Se generó un archivo index.html y un archivo style.css. No se crearon endpoints. No se utilizaron recursos externos. Se podría mejorar la interactividad del formulario y la precisión de las respuestas.
+
+## Iteración 2026-06-01 17:01
+Se generó una app que muestra información del Mundial 2022. Archivos generados: main.py, index.html, style.css. Endpoints creados: /. Recursos externos: none. Mejoras: Agregar más información sobre el Mundial, como los equipos participantes y los resultados de cada partido.
+
+## Iteración 2026-06-01 17:16
+Se agregó una aplicación que muestra las capitales de los países de Sudamérica. Se generaron los archivos main.py, index.html y style.css. Se creó un endpoint en la raíz (/) que devuelve el archivo index.html. No se utilizaron recursos externos. Se podría mejorar la aplicación agregando más funcionalidades, como la búsqueda de capitales o la visualización en un mapa.
+
+## Iteración 2026-06-01 17:43
+Se agregó una aplicación que lista los países que participaron en el Mundial de 2018. Se generaron los archivos index.html y style.css. Se creó un endpoint raíz (/) que devuelve el archivo index.html. No se utilizaron recursos externos. Se podría mejorar la aplicación agregando más información sobre cada país o permitiendo la búsqueda de países.
+
+## Iteración 2026-06-01 17:43
+Usuario pidió: app que tenga la lista de paises que participaron en el mundial de 2018. Archivos generados: index.html, style.css. Endpoints creados: /. Recursos externos usados: none. Qué se podría mejorar: agregar más información sobre cada país o permitir la búsqueda de países.
+
+## Iteración 2026-06-01 17:57
+Se agregó una aplicación que muestra las tandas del Mundial 2014, incluyendo octavos, cuartos, semis y final, así como el campeón. Se generaron los archivos index.html y style.css. No se crearon endpoints adicionales. No se utilizaron recursos externos. Se podría mejorar la aplicación agregando más información sobre cada partido o permitiendo la interacción del usuario.
+
+## Iteración 2026-06-01 17:57
+Usuario pidió: app que diga las tandas del mundial 2014 es decir octavos, cuartos, semis y final y el campeon. Archivos generados: index.html, style.css. Endpoints creados: None. Recursos externos usados: None. Qué se podría mejorar: Agregar más información sobre cada partido o permitir la interacción del usuario.
+
+## Iteración 2026-06-01 18:18
+Se agregó una aplicación que muestra información del mayor goleador de la historia del fútbol. 
+Archivos generados: main.py, index.html, style.css. 
+Endpoints creados: /api/mayor_goleador. 
+Recursos externos: Ninguno. 
+Posibles mejoras: Agregar más estadísticas o información sobre el jugador.
+
+## Iteración 2026-06-01 18:18
+Se agregó una aplicación que muestra información del mayor goleador de la historia del fútbol. Archivos generados: main.py, index.html, style.css. Endpoints creados: /api/mayor_goleador. Recursos externos: Ninguno. Posibles mejoras: Agregar más estadísticas o información sobre el jugador.
+
+## Iteración 2026-06-01 18:29
+Usuario pidió: dame la informacion de cuantos goles tiene cristiano ronaldo
+Archivos generados: index.html, style.css, main.py
+Endpoints creados: /
+Recursos externos usados: None
+Qué se podría mejorar: Agregar API para obtener información de goles de Cristiano Ronaldo
+
+## Iteracion 2026-06-01 18:44
+Estado actual: Muestra goles de Cristiano Ronaldo por equipo
+Endpoints o elementos clave: /api/cristiano_ronaldo, /api/equipo, /api/goles
+
+## Iteracion 2026-06-01 19:32
+Estado actual: Muestra la capital del Ecuador
+Endpoints o elementos clave: /api/capital, /api/imagen
+
+## Iteracion 2026-06-01 19:32
+Estado actual: Muestra capital del Ecuador
+Endpoints o elementos clave: /api/capital, imagen de Quito
+
+## CORRECCION REQUERIDA (2026-06-01 19:34)
+- Archivo sospechoso/Categoria: General
+- Instruccion: mira en la app que generaste la imagen no funcionaba
+- Accion: Usa LectorTool para leer el codigo actual y aplicar esta correccion.
+
+## Iteracion 2026-06-01 19:38
+Estado actual: Muestra la capital del Ecuador y una imagen de Quito.
+Endpoints o elementos clave: /api/capital, imagen de Quito, título Capital del Ecuador
+
+## Iteracion 2026-06-01 19:38
+Estado actual: Muestra la capital del Ecuador y una imagen de Quito.
+Endpoints o elementos clave: Título Capital del Ecuador, texto con la capital del Ecuador, imagen de Quito
+
+## CORRECCION REQUERIDA (2026-06-01 19:40)
+- Archivo sospechoso/Categoria: Frontend (index.html)
+- Instruccion: usa imagenes reales cuando te las pido, es decir la imagen de quito
+- Accion: Usa LectorTool para leer el codigo actual y aplicar esta correccion.
+
+## Iteracion 2026-06-01 19:43
+Estado actual: Muestra la capital del Ecuador y su imagen correspondiente.
+Endpoints o elementos clave: /static/style.css, index.html
+
+## Iteracion 2026-06-01 21:42
+Estado actual: App explica funcionamiento agente IA
+Endpoints o elementos clave: /api/agente, /api/descripcion, elementos HTML principales como título y descripción
+
+## Iteracion 2026-06-01 21:42
+Estado actual: App explica funcionamiento agente IA
+Endpoints o elementos clave: Título Agente IA, descripción del funcionamiento de un agente IA, imagen representativa
+
+## CORRECCION REQUERIDA (2026-06-01 21:45)
+- Archivo sospechoso/Categoria: Frontend (index.html)
+- Instruccion: No inventes las imagenes y no las uses cuando no te las pido
+- Accion: Usa LectorTool para leer el codigo actual y aplicar esta correccion.
+
+## Iteracion 2026-06-01 21:49
+Estado actual: App que explica el funcionamiento de un agente IA.
+Endpoints o elementos clave: index.html con título y descripción del agente IA
+
+## Iteracion 2026-06-01 22:07
+Estado actual: Muestra equipos del Mundial 2010
+Endpoints o elementos clave: /api/equipo, /api/instancia, lista_equipo.html

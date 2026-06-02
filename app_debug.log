@@ -1367,3 +1367,709 @@ LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
 2026-05-27 16:11:04,990 [INFO] 
 LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
 2026-05-27 16:11:05,574 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 16:58:28,100 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 16:58:29,043 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 16:58:49,065 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 16:58:49,854 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 16:59:09,876 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 16:59:10,517 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 16:59:30,521 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 16:59:31,074 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 16:59:51,092 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 16:59:51,773 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:00:11,776 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:00:12,498 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:00:32,501 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:00:33,211 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:00:53,229 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:00:53,841 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:01:13,844 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:01:14,480 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:01:34,499 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:01:35,181 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:01:55,184 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:01:55,774 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:02:15,777 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:02:16,361 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:13:18,669 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:13:19,529 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:13:39,533 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:13:40,527 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:14:00,571 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:14:01,241 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:14:21,244 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:14:21,906 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:14:41,924 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:14:42,673 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:15:02,677 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:15:03,715 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:15:23,718 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:15:24,410 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:15:44,413 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:15:45,325 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:16:05,343 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:16:05,868 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:16:25,872 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:16:26,446 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:16:46,465 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:16:47,232 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:17:07,236 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:17:07,876 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:39:54,695 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:39:54,707 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:39:55,743 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:40:15,747 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:40:15,748 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:40:16,534 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:40:36,557 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:40:36,559 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:40:37,173 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:40:57,176 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:40:57,177 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:40:57,850 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:41:17,869 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:41:17,870 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:41:19,070 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:41:39,073 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:41:39,074 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:41:40,493 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:42:00,496 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:42:00,497 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:42:01,589 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:42:21,591 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:42:21,593 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:42:22,519 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:42:42,537 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:42:42,539 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:42:43,051 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:43:03,054 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:43:03,055 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:43:03,552 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:43:23,571 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:43:23,573 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:43:24,287 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:43:44,290 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:43:44,292 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:43:44,834 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:44:04,837 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:44:04,838 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:44:05,339 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:56:03,242 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:56:03,254 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:56:04,031 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:56:12,035 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:56:12,036 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:56:13,189 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:56:21,213 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:56:21,214 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:56:21,893 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:56:29,896 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:56:29,897 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:56:30,670 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:56:38,686 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:56:38,687 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:56:40,021 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:56:48,024 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:56:48,025 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:56:49,451 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:56:57,453 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:56:57,454 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:56:58,506 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:57:06,507 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:57:06,509 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:57:07,704 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:57:15,720 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:57:15,721 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:57:16,190 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:57:24,193 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:57:24,194 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:57:24,694 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:57:32,710 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:57:32,712 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:57:33,537 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:57:41,540 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:57:41,541 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:57:42,073 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 17:57:50,076 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 17:57:50,077 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 17:57:50,602 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:17:02,934 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:17:02,946 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:17:03,756 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:17:11,760 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:17:11,761 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:17:12,726 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:17:20,751 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:17:20,752 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:17:21,695 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:17:29,697 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:17:29,698 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:17:30,489 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:17:38,505 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:17:38,506 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:17:39,203 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:17:47,206 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:17:47,207 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:17:48,015 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:17:56,017 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:17:56,019 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:17:56,606 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:18:04,608 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:18:04,609 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:18:05,454 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:18:13,470 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:18:13,471 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:18:14,011 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:18:22,013 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:18:22,014 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:18:22,535 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:18:30,551 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:18:30,552 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:18:31,310 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:18:39,313 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:18:39,314 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:18:39,972 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:18:47,975 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:18:47,976 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:18:48,466 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:28:01,467 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:28:01,479 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:28:02,345 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:28:10,349 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:28:10,351 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:28:11,243 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:28:19,267 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:28:19,268 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:28:19,859 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:28:27,862 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:28:27,863 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:28:28,517 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:28:36,534 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:28:36,535 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:28:37,223 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:28:45,226 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:28:45,227 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:28:45,945 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:28:53,947 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:28:53,948 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:28:54,614 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:29:02,616 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:29:02,617 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:29:03,188 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:29:11,204 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:29:11,205 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:29:11,754 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:29:19,757 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:29:19,758 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:29:20,378 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:29:28,393 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:29:28,395 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:29:28,942 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:29:36,945 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:29:36,946 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:29:37,570 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:29:45,572 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:29:45,573 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:29:46,086 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:29:54,088 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:29:54,090 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:29:54,696 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:31:43,440 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:31:43,442 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:31:44,131 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:31:52,134 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:31:52,135 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:31:53,140 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:32:01,156 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:32:01,157 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:01,765 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:32:09,768 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:32:09,769 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:10,436 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:32:18,454 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:32:18,455 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:19,123 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:32:27,125 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:32:27,126 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:27,710 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:32:35,712 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:32:35,713 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:35,958 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:36,184 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:36,372 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:36,537 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:32:36,702 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:35:33,043 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:35:33,044 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:35:33,752 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:35:41,755 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:35:41,756 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:41:05,979 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:41:05,997 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:41:06,581 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:41:06,604 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:41:06,606 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:41:08,087 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:42:08,121 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:42:08,122 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:42:09,241 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:42:09,262 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:42:09,263 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:42:09,932 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:42:09,956 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:42:09,958 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:42:11,403 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:43:11,408 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:43:11,410 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:43:11,870 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:43:11,888 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:43:11,891 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:43:12,898 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:43:12,901 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:43:12,902 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:43:13,418 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:44:13,439 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:44:13,440 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:44:13,928 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:44:13,947 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:44:13,948 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:44:14,297 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 18:44:14,300 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 18:44:14,301 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 18:44:14,711 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:29:18,545 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:29:18,558 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:29:19,156 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:29:19,178 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:29:19,179 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:29:20,162 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:30:20,188 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:30:20,189 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:30:21,162 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:30:21,165 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:30:21,167 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:30:21,892 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:30:21,916 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:30:21,918 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:30:22,615 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:31:22,620 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:31:22,621 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:31:23,130 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:31:23,152 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:31:23,154 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:31:24,033 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:31:24,037 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:31:24,038 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:31:24,452 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:32:24,474 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:32:24,475 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:32:24,894 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:32:24,897 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:32:24,899 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:32:25,246 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:32:25,249 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:32:25,251 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:32:25,790 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:34:54,238 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:34:54,253 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:34:54,724 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:34:54,729 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:34:54,730 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:34:55,882 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:35:55,901 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:35:55,902 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:35:56,584 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:35:56,587 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:35:56,587 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:35:57,304 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:35:57,315 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:35:57,316 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:35:57,990 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:36:57,993 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:36:57,994 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:36:58,348 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:36:58,363 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:36:58,364 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:36:59,296 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:36:59,298 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:36:59,299 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:36:59,579 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:37:59,596 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:37:59,597 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:38:00,166 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:38:00,169 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:38:00,170 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:38:00,673 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:38:00,679 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:38:00,680 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:38:01,060 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:40:35,960 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:40:35,961 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:40:36,720 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:40:36,723 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:40:36,724 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:40:39,276 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:41:39,302 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:41:39,303 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:41:40,018 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:41:40,021 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:41:40,022 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:41:40,592 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:41:40,607 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:41:40,608 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:41:41,372 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:42:41,375 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:42:41,377 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:42:41,889 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:42:41,903 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:42:41,904 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:42:42,650 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:42:42,653 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:42:42,654 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:42:42,996 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:43:43,013 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:43:43,014 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:43:43,505 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:43:43,507 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:43:43,508 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:43:44,064 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 19:43:44,066 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 19:43:44,067 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 19:43:44,413 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:39:47,827 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:39:47,842 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:39:48,397 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:39:48,402 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:39:48,403 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:39:49,478 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:40:49,499 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:40:49,500 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:40:50,212 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:40:50,215 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:40:50,216 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:40:50,968 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:40:50,983 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:40:50,984 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:40:51,925 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:41:51,928 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:41:51,929 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:41:52,877 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:41:52,902 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:41:52,903 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:41:53,705 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:41:53,707 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:41:53,708 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:41:54,435 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:42:54,437 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:42:54,438 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:42:55,278 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:42:55,280 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:42:55,281 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:42:55,912 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:42:55,924 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:42:55,925 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:42:56,456 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:42:56,458 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:42:56,460 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:42:56,816 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:42:56,818 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:42:56,819 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:42:57,242 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:45:55,319 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:45:55,320 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:45:55,729 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:45:55,732 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:45:55,733 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:45:56,748 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:46:56,767 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:46:56,768 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:46:57,520 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:46:57,522 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:46:57,524 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:46:58,110 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:46:58,122 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:46:58,123 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:46:59,691 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:47:59,694 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:47:59,695 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:48:00,109 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:48:00,139 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:48:00,140 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:48:01,112 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:48:01,114 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:48:01,115 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:48:01,414 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:49:01,430 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:49:01,431 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:49:02,049 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:49:02,051 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:49:02,052 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:49:02,527 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:49:02,528 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:49:02,529 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:49:02,872 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:57:23,372 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:57:23,386 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:57:23,979 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:57:23,983 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:57:23,984 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:57:25,201 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:58:25,224 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:58:25,225 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:58:26,034 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:58:26,036 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:58:26,037 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:58:26,600 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:58:26,615 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:58:26,616 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:58:27,976 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:59:27,980 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:59:27,981 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:59:28,644 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:59:28,680 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:59:28,681 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:59:29,553 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 21:59:29,555 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 21:59:29,556 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:59:29,747 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:59:30,132 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:59:30,324 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:59:30,518 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 21:59:30,712 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:02:59,576 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:02:59,577 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:03:35,436 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:03:35,448 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:03:35,721 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:03:35,924 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:03:36,112 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:03:36,297 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:03:36,484 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:04:51,157 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:04:51,169 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:04:51,717 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:04:51,721 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:04:51,722 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:04:53,203 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:05:53,227 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:05:53,228 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:05:53,965 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:05:53,968 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:05:53,969 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:05:54,479 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:05:54,499 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:05:54,500 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:05:55,857 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:06:55,859 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:06:55,860 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:06:56,519 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:06:56,537 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:06:56,538 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:06:57,355 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:06:57,357 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:06:57,358 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:06:57,836 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:07:57,857 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:07:57,859 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:07:58,611 [INFO] Wrapper: Completed Call, calling success_handler
+2026-06-01 22:07:58,613 [WARNING] `litellm.set_verbose` is deprecated. Please set `os.environ['LITELLM_LOG'] = 'DEBUG'` for debug logs.
+2026-06-01 22:07:58,614 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:07:58,827 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:07:59,038 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:07:59,191 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:07:59,396 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq
+2026-06-01 22:07:59,590 [INFO] 
+LiteLLM completion() model= llama-3.3-70b-versatile; provider = groq

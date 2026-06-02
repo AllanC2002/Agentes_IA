@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process, LLM
 from crewai.tools import BaseTool
 
+litellm.set_verbose = True
 
 logging.basicConfig(
     level=logging.INFO,
@@ -30,7 +31,7 @@ load_dotenv()
 
 litellm.num_retries = 5 # Litellm pertence a crewAI y enruta las peticiones al LLM. Limitar a 5 reintentos para evitar loops infinitos
 litellm.retry_after = 15 # Tiempo de espera entre reintentos, en segundos. Para dar mas tiempo al LLM a recuperarse y evitar bloqueos temporales.
-
+"""
 original_completion = litellm.completion # litellm.completion es la funcion que hace las llamadas al LLM. La vamos a envolver para agregarle una pausa de 12 segundos antes de cada llamada
 
 def completion_con_pausa(*args, **kwargs):
@@ -38,6 +39,8 @@ def completion_con_pausa(*args, **kwargs):
     return original_completion(*args, **kwargs)
 
 litellm.completion = completion_con_pausa
+"""
+litellm.completion
 
 app = FastAPI()
 app.add_middleware(
@@ -115,6 +118,7 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
         def _run(self, filename: str) -> str:
             try:
                 clean = os.path.basename(filename) #Nombre del archivo sin rutas, para evitar que los agentes intenten acceder a archivos fuera del directorio permitido. Esto asegura que solo puedan leer archivos específicos como context.md, memory.md o los archivos generados en app_generada/.
+                emit(f"Analizando contexto desde el archivo '{clean}'...")
                 if not os.path.exists(clean):
                     return f"'{clean}' no existe. Asume que es un proyecto nuevo."
                 with open(clean, "r", encoding="utf-8") as f:
@@ -128,6 +132,8 @@ def make_tools(q: asyncio.Queue, loop: asyncio.AbstractEventLoop):
 
         def _run(self, content: str) -> str:
             try:
+                lineas = len(content.split('\n'))
+                emit(f"Escribiendo lógica del servidor FastAPI ({lineas} líneas de código en main.py)...")
                 os.makedirs("app_generada", exist_ok=True) #Crea el directorio app_generada si no existe.
                 with open("app_generada/main.py", "w", encoding="utf-8") as f: # abre o crea el archivo app_generada/main.py y escribe el contenido proporcionado por el agente.
                     f.write(content)
@@ -194,16 +200,23 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
         )
 
     def creador_callback(nombre_agente):
-        def callback(paso): # Paso es un objeto que representa cada paso que da el agente. Puede ser una string con la descripcion del paso, o una lista de acciones si el agente esta ejecutando herramientas. Si es una lista de acciones, se extrae la primera accion y se intenta obtener su texto para mostrarlo como mensaje de progreso.
+        def callback(paso):
             try:
-                if isinstance(paso, list) and len(paso) > 0: # Si es lista y si contiene algo
-                    accion = paso[0][0] if isinstance(paso[0], tuple) else paso[0] # Si el primer elemento de la lista es una tupla, se asume que la accion es el primer elemento de la tupla. Si no es una tupla, se asume que la accion es el primer elemento de la lista.
-                    texto = getattr(accion, 'log', '') or getattr(accion, 'text', '') # Se intenta obtener el texto de la accion, primero buscando un atributo 'log' y si no existe, buscando un atributo 'text'. Si ninguno existe, se asigna una cadena vacía.
+                # Imprime el paso crudo para ver qué estructura tiene realmente
+                print(f"--- PASO CRUDO DE {nombre_agente} ---",flush=True)
+                print(paso,flush=True) 
+                
+                if isinstance(paso, list) and len(paso) > 0:
+                    accion = paso[0][0] if isinstance(paso[0], tuple) else paso[0]
+                    texto = getattr(accion, 'log', '') or getattr(accion, 'text', '')
                     if texto:
                         resumen = texto.strip().split('\n')[0][:150]
-                        emit("agente", f"[{nombre_agente}] {resumen}...") #[Backend Developer] Necesito crear los endpoints de la API...
-            except Exception:
-                pass
+                        emit("agente", f"[{nombre_agente}] {resumen}...")
+                        
+            except Exception as e:
+                # Esto revelará si es un NameError por 'emit' u otro fallo
+                print(f"ERROR EN CALLBACK ({nombre_agente}): {e}",flush=True)
+                
         return callback
 
     try:
@@ -225,7 +238,7 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
             ),
             llm=llm,
             tools=[lector],
-            verbose=False,
+            verbose=True,
             max_iter=4,
             step_callback=creador_callback("Planificador"),
         )
@@ -247,7 +260,7 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
             ),
             llm=llm,
             tools=[guardar_main],
-            verbose=False,
+            verbose=True,
             max_iter=3,
             step_callback=creador_callback("Backend"),
         )
@@ -270,7 +283,7 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
             ),
             llm=llm,
             tools=[guardar_html],
-            verbose=False,
+            verbose=True,
             max_iter=3,
             step_callback=creador_callback("Frontend"),
         )
@@ -289,7 +302,7 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
             ),
             llm=llm,
             tools=[guardar_css],
-            verbose=False,
+            verbose=True,
             max_iter=3,
             step_callback=creador_callback("CSS"),
         )
@@ -304,7 +317,7 @@ def lanzar_crew(descripcion: str, q: asyncio.Queue, loop: asyncio.AbstractEventL
             ),
             llm=llm,
             tools=[guardar_memory],
-            verbose=False,
+            verbose=True,
             max_iter=2,
             step_callback=creador_callback("Secretario"),
         )
@@ -486,6 +499,7 @@ El usuario pidio: {descripcion}
             tasks=[tarea_plan, tarea_backend, tarea_frontend, tarea_css, tarea_memoria],
             process=Process.sequential,
             verbose=True,
+            max_rpm=2
         )
 
         crew.kickoff()
@@ -519,7 +533,9 @@ async def generar(req: AppRequest):
     return {"ok": True}
 
 
-@app.get("/progreso/{sesion_id}")
+@app.get("/progreso/{sesion_id}") 
+#Endpoint para enviar el progreso de la generación de la app al frontend. Recibe el ID de sesión para identificar la cola de mensajes correspondiente. 
+#Devuelve una respuesta de tipo text/event-stream que se actualiza en tiempo real con los mensajes de progreso enviados por los agentes a través de la cola.
 async def progreso(sesion_id: str):
     async def stream():
         for _ in range(30):
@@ -558,6 +574,8 @@ async def progreso(sesion_id: str):
 
 
 @app.post("/feedback")
+#Endpoint para recibir feedback del usuario sobre la app generada. Recibe un tipo de feedback (mejora o positivo), una categoría y una descripción.
+#Guarda el feedback en memory.md para que los agentes puedan leerlo en futuras iteraciones y mejorar la app.
 def recibir_feedback(req: FeedbackRequest):
     try:
         historial = ""

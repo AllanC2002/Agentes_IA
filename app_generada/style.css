@@ -1,1 +1,32 @@
-body { background-color: #1a1a2e; color: #ffffff; font-family: sans-serif; text-align: center; } button { background-color: #6c63ff; border: none; padding: 10px 20px; cursor: pointer; } button:hover { background-color: #574fd6; }
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Body */
+body {
+    background: #1a1a2e;
+    color: #ffffff;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Titulos */
+h1 { margin-bottom: 1.5rem; font-size: 2rem; }
+
+/* Botones */
+button {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Hover Botones */
+button:hover { background: #574fd6; }

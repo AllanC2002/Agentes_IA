@@ -43,7 +43,7 @@
             </div>
             
             <p id="mensaje-exito" style="color: #4CAF50; display: none; margin-top: 10px; font-weight: bold;">
-                ✅ ¡Proceso completado con éxito! Revisa la carpeta app_generada/
+                ¡Proceso completado con éxito! Revisa la carpeta app_generada/
             </p>
         </section>
 
@@ -193,14 +193,14 @@
 
                 if (data.tipo === 'error') {
                     cerrarSSE()
-                    setStatus(`❌ ${data.mensaje}`)
+                    setStatus(`${data.mensaje}`)
                     setTimeout(() => mostrarEstado('input'), 4000)
                 }
             }
 
             source.onerror = () => {
                 cerrarSSE()
-                setStatus('❌ Error de conexión. Revisa la consola del servidor.')
+                setStatus('Error de conexión. Revisa la consola del servidor.')
                 setTimeout(() => mostrarEstado('input'), 4000)
             }
 
@@ -212,7 +212,7 @@
                 })
             } catch (err) {
                 cerrarSSE()
-                setStatus(`❌ Error al enviar: ${err.message}`)
+                setStatus(`Error al enviar: ${err.message}`)
                 setTimeout(() => mostrarEstado('input'), 4000)
             }
         }

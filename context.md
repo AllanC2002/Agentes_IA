@@ -20,6 +20,7 @@
 - Peticiones (Fetch): Deben usar URLs absolutas apuntando al puerto correcto. Ejemplo: `fetch('http://localhost:8001/api/datos')`.
 - Manejo de JSON: Nunca asigne objetos completos a `textContent`. Extraiga la propiedad específica (ej. `data.mensaje`).
 - Diseño: Siempre usar una paleta Dark Mode (#1a1a2e para fondo, #ffffff para texto).
+- Agrega imagenes unicamente cuando el usuario te lo especifique.
 
 ## 4. Flujo de Trabajo (¡CRÍTICO!)
 - Si el requerimiento es puramente ESTÁTICO (ej. mostrar capital de Ecuador), NO crees endpoints `/api/`, pon la información directo en el HTML.
