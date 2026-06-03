@@ -14,7 +14,7 @@ body {
     padding: 2rem;
 }
 
-/* Titulos */
+/* Titulo */
 h1 { margin-bottom: 1.5rem; font-size: 2rem; }
 
 /* Botones */
@@ -28,5 +28,14 @@ button {
     font-size: 1rem;
 }
 
-/* Hover Botones */
+/* Hover botones */
 button:hover { background: #574fd6; }
+
+/* Inputs */
+input[type='number'] {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 6px;
+    width: 50px;
+}

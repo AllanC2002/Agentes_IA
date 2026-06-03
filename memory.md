@@ -203,3 +203,20 @@ Endpoints o elementos clave: index.html con título y descripción del agente IA
 ## Iteracion 2026-06-01 22:07
 Estado actual: Muestra equipos del Mundial 2010
 Endpoints o elementos clave: /api/equipo, /api/instancia, lista_equipo.html
+
+## Iteracion 2026-06-02 20:09
+Estado actual: Realiza operaciones basicas de calculadora
+Endpoints o elementos clave: /api/sumar, /api/restar, /api/multiplicar, /api/dividir
+
+## Iteracion 2026-06-02 20:14
+Estado actual: Muestra personajes de Rick y Morty
+Endpoints o elementos clave: /api/personaje con método GET
+
+## CORRECCION REQUERIDA (2026-06-02 20:15)
+- Archivo sospechoso/Categoria: Backend (main.py)
+- Instruccion: en la app de calculadora los endpoints eran innecesarios podias haber hecho la logica solo con js, o algo simple, genera denuevo una app que permita sumar, restar, multiplicar y dividir
+- Accion: Usa LectorTool para leer el codigo actual y aplicar esta correccion.
+
+## Iteracion 2026-06-02 20:19
+Estado actual: Realiza operaciones basicas de calculadora
+Endpoints o elementos clave: No aplica
