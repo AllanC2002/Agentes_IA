@@ -104,12 +104,14 @@ GROQ_API_KEY=gsk_...
 ```
 ---
 ## Ejecución
+
 ```bash
 python controller.py
 ```
 El servidor arranca en `http://localhost:8000`. Abre esa URL en el navegador para acceder al frontend generador.
 
 La app generada (en `app_generada/`) se sirve directamente desde la ruta `/static/` del mismo servidor.
+
 ---
 
 ## Endpoints de la API
@@ -160,6 +162,7 @@ llm = LLM(
 )
 ```
 `litellm` maneja automáticamente los reintentos (máx. 5, con 15 segundos de espera entre cada uno) para tolerar timeouts o throttling del proveedor.
+
 ---
 ## Estructura del proyecto
 
