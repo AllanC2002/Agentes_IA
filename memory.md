@@ -56,8 +56,6 @@ Endpoints creados: /.
 Recursos externos usados: none. 
 Qué se podría mejorar: agregar más funcionalidades a la app.
 
-
-
 ## Iteración 2026-05-20 16:28
 Se creó una aplicación simple con FastAPI que muestra una imagen de un paisaje. Se generaron los archivos main.py, index.html y style.css. Se creó un endpoint en /. Se utilizó la URL https://picsum.photos/200/300 para obtener la imagen. Se podría mejorar la aplicación agregando más funcionalidades o utilizando una base de datos para almacenar las imágenes.
 
